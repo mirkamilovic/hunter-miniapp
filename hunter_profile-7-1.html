@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#070d0a">
+<title>Hunter Mafia — Mini ilova</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>try{var __t=localStorage.getItem("hm_theme");if(__t&&__t!=="zumrad")document.documentElement.setAttribute("data-theme",__t);}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   HUNTER MAFIA — MINI ILOVA  (Sherif Mafia tuzilmasi + Hunter uslubi: zumrad & oltin)
+   ========================================================================== */
+:root{
+  --bg-0:#070d0a; --bg-1:#0c1510; --surface:#111c16; --surface-2:#182620; --hairline:#23392e;
+  --gold:#d6ae3a; --gold-soft:#f0d27a; --gold-rgb:214,174,58; --gs-rgb:240,210,122;
+  --em:#2fbf86; --em-rgb:47,191,134; --glow:#12382a;
+  --text-0:#f3efe2; --text-1:#b9c4b8; --text-2:#7e8f83;
+  --blood:#8f2a2a; --blood-soft:#d75d5d; --violet:#8b5cf6; --rose:#ff6f91;
+  --r-lg:20px; --r-md:14px; --r-sm:10px;
+  --safe-b: env(safe-area-inset-bottom, 0px);
+}
+[data-theme="qonli"]{ --bg-0:#120a0a; --bg-1:#1a0f0f; --surface:#231414; --surface-2:#2d1a1a; --hairline:#432525; --gold:#d9a441; --gold-soft:#f0cf8a; --gold-rgb:217,164,65; --gs-rgb:240,207,138; --glow:#3a1616; }
+[data-theme="tun"]{ --bg-0:#080c15; --bg-1:#0e1526; --surface:#131c30; --surface-2:#1a2540; --hairline:#27365a; --gold:#6ea8ff; --gold-soft:#a9cbff; --gold-rgb:110,168,255; --gs-rgb:169,203,255; --glow:#16264a; }
+[data-theme="binafsha"]{ --bg-0:#0e0915; --bg-1:#170f25; --surface:#1e1430; --surface-2:#281b40; --hairline:#3c2a5c; --gold:#b58cff; --gold-soft:#d8c2ff; --gold-rgb:181,140,255; --gs-rgb:216,194,255; --glow:#2a1a4a; }
+[data-theme="platina"]{ --bg-0:#0b0c0e; --bg-1:#14161a; --surface:#1b1e23; --surface-2:#242830; --hairline:#363c47; --gold:#c4ccd8; --gold-soft:#e8edf5; --gold-rgb:196,204,216; --gs-rgb:232,237,245; --glow:#22262e; }
+[data-theme="yoqut"]{ --bg-0:#130a0f; --bg-1:#1f101a; --surface:#2a1420; --surface-2:#361a29; --hairline:#54263c; --gold:#ff6f91; --gold-soft:#ffb3c6; --gold-rgb:255,111,145; --gs-rgb:255,179,198; --glow:#4a1630; }
+[data-theme="feruza"]{ --bg-0:#061110; --bg-1:#0c1c1a; --surface:#112724; --surface-2:#173330; --hairline:#245049; --gold:#3fd0c0; --gold-soft:#9aeee4; --gold-rgb:63,208,192; --gs-rgb:154,238,228; --glow:#0f3a34; }
+[data-theme="kuz"]{ --bg-0:#110c06; --bg-1:#1b140a; --surface:#251b0e; --surface-2:#302312; --hairline:#4d381c; --gold:#e8892f; --gold-soft:#ffc078; --gold-rgb:232,137,47; --gs-rgb:255,192,120; --glow:#3d2610; }
+[data-theme="vodiy"]{ --bg-0:#0a0d06; --bg-1:#121809; --surface:#1a2210; --surface-2:#232e15; --hairline:#37471f; --gold:#a3c644; --gold-soft:#d0e58a; --gold-rgb:163,198,68; --gs-rgb:208,229,138; --glow:#26350f; }
+[data-theme="muz"]{ --bg-0:#070e13; --bg-1:#0d1921; --surface:#12222c; --surface-2:#182f3c; --hairline:#274759; --gold:#7fd8f0; --gold-soft:#bdeefa; --gold-rgb:127,216,240; --gs-rgb:189,238,250; --glow:#103446; }
+[data-theme="onyx"]{ --bg-0:#090908; --bg-1:#121210; --surface:#191917; --surface-2:#22221f; --hairline:#3a3a34; --gold:#e6b422; --gold-soft:#ffd966; --gold-rgb:230,180,34; --gs-rgb:255,217,102; --glow:#211d0d; }
+[data-theme="shafaq"]{ --bg-0:#130b0a; --bg-1:#20120e; --surface:#291812; --surface-2:#35201a; --hairline:#54332a; --gold:#ff8a65; --gold-soft:#ffc1a8; --gold-rgb:255,138,101; --gs-rgb:255,193,168; --glow:#452016; }
+
+*{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html,body{ margin:0; padding:0; }
+body{ font-family:'Inter',system-ui,sans-serif; color:var(--text-0); background:var(--bg-0); min-height:100vh; position:relative;
+  background-image:radial-gradient(120% 55% at 50% -8%, var(--glow) 0%, transparent 60%), radial-gradient(70% 40% at 100% 100%, rgba(var(--gold-rgb),.05), transparent 70%);
+  background-attachment:fixed; -webkit-font-smoothing:antialiased; }
+button{ font-family:inherit; cursor:pointer; color:inherit; }
+input,textarea{ font-family:inherit; }
+.app{ max-width:480px; margin:0 auto; padding:14px 14px calc(112px + var(--safe-b)); position:relative; z-index:2; }
+.page{ display:none; }
+.page.active{ display:block; animation:rise .38s cubic-bezier(.2,.8,.2,1); }
+@keyframes rise{ from{ opacity:0; transform:translateY(12px); } to{ opacity:1; transform:none; } }
+.serif{ font-family:'Cormorant Garamond',serif; }
+.cinzel{ font-family:'Cinzel',serif; }
+
+/* ---------- sahifa sarlavhasi ---------- */
+.ph{ margin:6px 2px 14px; }
+.ph h1{ margin:0; font-family:'Cormorant Garamond',serif; font-weight:700; font-style:italic; font-size:32px; line-height:1.1;
+  background:linear-gradient(180deg,var(--gold-soft),var(--gold)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.ph p{ margin:5px 0 0; color:var(--text-2); font-size:13.5px; }
+.ph.row{ display:flex; align-items:center; gap:10px; }
+.back{ flex:none; width:38px; height:38px; border-radius:12px; border:1px solid var(--hairline); background:var(--surface); font-size:20px; line-height:1; }
+.sect{ margin:22px 4px 10px; font-family:'Cinzel',serif; font-weight:600; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold-soft);
+  display:flex; align-items:center; gap:10px; }
+.sect::after{ content:''; flex:1; height:1px; background:linear-gradient(90deg,rgba(var(--gold-rgb),.5),transparent); }
+.hint{ font-size:12px; color:var(--text-2); text-align:center; margin:10px 6px; line-height:1.5; }
+.empty{ text-align:center; color:var(--text-2); font-size:13.5px; padding:26px 12px; border:1px dashed var(--hairline); border-radius:var(--r-md); }
+
+/* ---------- kartalar ---------- */
+.card{ background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01)), var(--surface); border:1px solid var(--hairline);
+  border-radius:var(--r-lg); padding:16px; margin-bottom:14px; position:relative; }
+.card.gold{ border-color:rgba(var(--gold-rgb),.45); box-shadow:0 0 0 1px rgba(var(--gold-rgb),.08) inset, 0 10px 34px rgba(0,0,0,.35); }
+.card-t{ display:flex; align-items:center; gap:9px; margin:0 0 12px; font-family:'Cormorant Garamond',serif; font-size:21px; font-weight:700; }
+.card-t .ic{ color:var(--gold); font-size:18px; }
+
+/* ---------- profil kartasi ---------- */
+.pcard{ padding:18px 16px 16px; }
+.pc-top{ display:flex; gap:14px; align-items:center; }
+.avatar{ flex:none; width:88px; height:88px; border-radius:50%; padding:3px; background:conic-gradient(from 210deg,var(--gold-soft),var(--gold),var(--em),var(--gold-soft));
+  box-shadow:0 0 26px rgba(var(--gold-rgb),.28); }
+.avatar .in{ width:100%; height:100%; border-radius:50%; background:var(--bg-1) center/cover no-repeat; display:flex; align-items:center; justify-content:center;
+  font-family:'Cinzel',serif; font-size:32px; color:var(--gold-soft); border:3px solid var(--bg-0); }
+.pc-name{ font-family:'Cormorant Garamond',serif; font-weight:700; font-size:29px; line-height:1.05; word-break:break-word; }
+.pc-handle{ color:var(--text-2); font-size:14px; margin-top:3px; }
+.rank{ display:inline-flex; align-items:center; gap:6px; margin-top:8px; padding:5px 12px; border-radius:20px; font-size:13px; font-weight:600;
+  color:var(--gold-soft); background:rgba(var(--gold-rgb),.1); border:1px solid rgba(var(--gold-rgb),.4); }
+.chips{ display:flex; flex-wrap:wrap; gap:9px; margin-top:16px; }
+.chip{ display:inline-flex; align-items:center; gap:8px; padding:9px 15px; border-radius:24px; background:var(--bg-1); border:1px solid var(--hairline);
+  font-family:'Cinzel',serif; font-weight:600; font-size:17px; }
+.chip .e{ font-size:18px; }
+.chip.btn{ padding:0; width:46px; height:46px; justify-content:center; border-color:rgba(var(--gold-rgb),.45); font-size:20px; }
+.chip.btn:active{ transform:scale(.94); }
+.chip.vip{ color:var(--gold-soft); border-color:rgba(var(--gold-rgb),.5); background:rgba(var(--gold-rgb),.08); font-family:'Inter'; font-size:13px; }
+
+/* ---------- statistika ---------- */
+.stats{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px; }
+.stat{ text-align:center; padding:16px 8px 14px; border-radius:var(--r-lg); border:1px solid var(--hairline); background:linear-gradient(180deg,rgba(var(--gold-rgb),.06),transparent 60%), var(--surface); }
+.stat .ic{ width:50px; height:50px; margin:0 auto 8px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px;
+  background:var(--bg-1); border:1px solid rgba(var(--gold-rgb),.3); }
+.stat .n{ font-family:'Cinzel',serif; font-weight:700; font-size:32px; line-height:1; }
+.stat .l{ margin-top:6px; font-size:11px; letter-spacing:.16em; color:var(--text-2); font-weight:600; }
+.pbar .top{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:9px; font-size:15px; color:var(--text-1); }
+.pbar .top b{ font-family:'Cinzel',serif; color:var(--gold-soft); font-size:15px; }
+.track{ height:11px; border-radius:8px; background:var(--bg-1); border:1px solid var(--hairline); overflow:hidden; }
+.track i{ display:block; height:100%; width:0; border-radius:8px; background:linear-gradient(90deg,var(--em),var(--gold-soft)); transition:width 1s cubic-bezier(.2,.8,.2,1); }
+.srv{ display:flex; align-items:center; gap:12px; padding:9px 0; font-size:15px; }
+.srv + .srv{ border-top:1px solid var(--hairline); }
+.srv .v{ margin-left:auto; font-family:'Cinzel',serif; font-weight:700; font-size:17px; }
+.dot{ width:13px; height:13px; border-radius:50%; background:var(--em); box-shadow:0 0 0 0 rgba(var(--em-rgb),.6); animation:pulse 2s infinite; }
+@keyframes pulse{ 70%{ box-shadow:0 0 0 10px rgba(var(--em-rgb),0); } 100%{ box-shadow:0 0 0 0 rgba(var(--em-rgb),0); } }
+
+/* ---------- VIP ---------- */
+.vt{ border:1px solid var(--hairline); border-radius:var(--r-md); padding:13px 13px 12px; margin-bottom:10px; background:var(--bg-1); }
+.vt.best{ border-color:rgba(var(--gold-rgb),.55); background:linear-gradient(180deg,rgba(var(--gold-rgb),.09),var(--bg-1)); }
+.vt .t{ font-weight:700; font-size:16px; display:flex; align-items:center; gap:8px; }
+.vt .t em{ margin-left:auto; font-style:normal; font-size:11px; color:var(--em); border:1px solid rgba(var(--em-rgb),.5); padding:2px 8px; border-radius:10px; }
+.vt .d{ color:var(--text-2); font-size:13px; margin:5px 0 10px; }
+.pay{ display:flex; gap:9px; flex-wrap:wrap; }
+.pay button, .btn-gold, .btn-em, .btn-ghost{ border:none; border-radius:24px; padding:11px 18px; font-weight:700; font-size:15px; }
+.pay button{ flex:1 1 auto; min-width:120px; }
+.btn-gold, .pay .g{ background:linear-gradient(180deg,var(--gold-soft),var(--gold)); color:#1a1408; box-shadow:0 6px 18px rgba(var(--gold-rgb),.22); }
+.pay .d{ background:linear-gradient(180deg,#3a3320,#2a2415); color:var(--gold-soft); border:1px solid rgba(var(--gold-rgb),.4); }
+.btn-em{ background:linear-gradient(180deg,#35d69a,#1f9e6a); color:#04140d; }
+.btn-ghost{ background:var(--surface); border:1px solid var(--hairline); color:var(--text-1); }
+.btn-gold:active,.pay button:active,.btn-em:active{ transform:scale(.97); filter:brightness(.95); }
+button:disabled{ opacity:.5; cursor:not-allowed; }
+.full{ width:100%; }
+.seg{ display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 12px; }
+.seg button{ padding:10px 16px; border-radius:22px; border:1px solid var(--hairline); background:var(--bg-1); color:var(--text-1); font-weight:600; font-size:14px; }
+.seg button.on{ border-color:var(--gold); color:var(--gold-soft); background:rgba(var(--gold-rgb),.12); box-shadow:0 0 14px rgba(var(--gold-rgb),.15); }
+.lab{ font-size:14px; color:var(--text-2); margin:10px 2px 2px; font-weight:600; }
+.field{ width:100%; padding:14px 15px; border-radius:var(--r-md); border:1px solid var(--hairline); background:var(--bg-1); color:var(--text-0); font-size:16px; margin:6px 0 10px; }
+.field:focus{ outline:none; border-color:var(--gold); box-shadow:0 0 0 3px rgba(var(--gold-rgb),.14); }
+
+/* ---------- boshqa botlar / qator ---------- */
+.rowcard{ display:flex; align-items:center; gap:14px; width:100%; text-align:left; padding:14px 16px; border-radius:var(--r-lg); border:1px solid rgba(var(--gold-rgb),.35);
+  background:linear-gradient(180deg,rgba(var(--gold-rgb),.06),transparent), var(--surface); margin-bottom:14px; }
+.rowcard .ri{ font-size:34px; }
+.rowcard .rt{ font-family:'Cormorant Garamond',serif; font-weight:700; font-size:22px; }
+.rowcard .rd{ font-size:13.5px; color:var(--text-2); }
+.rowcard .ch{ margin-left:auto; color:var(--gold); font-size:22px; }
+
+/* ---------- kunlik mukofot (7 ustun) ---------- */
+.cal7{ display:grid; grid-template-columns:repeat(7,1fr); gap:6px; margin:12px 0; }
+.cc{ position:relative; border:1px solid var(--hairline); background:var(--bg-1); border-radius:12px; padding:7px 0 6px; min-height:74px; text-align:center;
+  display:flex; flex-direction:column; align-items:center; justify-content:space-between; }
+.cc .dn{ width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px; background:var(--surface-2); }
+.cc .rw{ font-family:'Cinzel',serif; font-weight:700; font-size:14px; color:var(--text-1); line-height:1.1; }
+.cc .rw small{ display:block; font-size:14px; }
+.cc.gem{ border-color:rgba(127,190,255,.5); background:linear-gradient(180deg,rgba(80,150,255,.14),var(--bg-1)); }
+.cc.gem .rw{ color:#8fc8ff; font-size:15px; }
+.cc.gem::before{ content:'★'; position:absolute; top:2px; right:4px; font-size:9px; color:#8fc8ff; }
+.cc.claimed{ background:rgba(var(--em-rgb),.1); border-color:rgba(var(--em-rgb),.5); }
+.cc.claimed .dn{ background:var(--em); color:#04140d; }
+.cc.today{ border-color:var(--gold-soft); box-shadow:0 0 0 1px rgba(var(--gs-rgb),.6), 0 0 20px rgba(var(--gold-rgb),.35); background:rgba(var(--gold-rgb),.1); }
+.cc.today .dn{ background:linear-gradient(180deg,var(--gold-soft),var(--gold)); color:#1a1408; }
+.cc.locked{ opacity:.6; }
+
+/* ---------- inventar chiplari ---------- */
+.invg{ display:flex; flex-wrap:wrap; gap:10px; }
+.ich{ display:inline-flex; align-items:center; gap:8px; padding:9px 15px; border-radius:22px; background:var(--bg-1); border:1px solid var(--hairline); font-weight:700; font-size:16px; }
+.ich.has{ border-color:rgba(var(--gold-rgb),.55); color:var(--gold-soft); background:rgba(var(--gold-rgb),.08); }
+.ich.vip{ border-color:rgba(var(--gold-rgb),.55); color:var(--gold-soft); }
+
+/* ---------- rollar ---------- */
+.search{ position:relative; margin-bottom:6px; }
+.search input{ width:100%; padding:14px 16px 14px 46px; border-radius:var(--r-md); border:1px solid rgba(var(--gold-rgb),.35); background:var(--surface); color:var(--text-0); font-size:16px; }
+.search::before{ content:'🔍'; position:absolute; left:16px; top:50%; transform:translateY(-50%); font-size:16px; opacity:.85; }
+.rg{ display:grid; grid-template-columns:1fr 1fr; gap:11px; }
+.rt2{ position:relative; display:flex; align-items:center; gap:10px; text-align:left; padding:16px 14px; border-radius:16px; border:1px solid var(--hairline);
+  background:var(--surface); font-weight:700; font-size:16px; min-height:64px; }
+.rt2 .em{ font-size:22px; }
+.rt2:active{ transform:scale(.97); }
+.rt2.mafia{ border-color:rgba(215,93,93,.4); background:linear-gradient(180deg,rgba(215,93,93,.1),var(--surface)); color:#ffb4b4; }
+.rt2.town{ border-color:rgba(var(--em-rgb),.4); background:linear-gradient(180deg,rgba(var(--em-rgb),.1),var(--surface)); color:#a9efce; }
+.rt2.solo{ border-color:rgba(var(--gold-rgb),.45); background:linear-gradient(180deg,rgba(var(--gold-rgb),.1),var(--surface)); color:var(--gold-soft); }
+.rt2.items{ border-color:rgba(var(--gold-rgb),.3); color:var(--text-0); }
+.bd{ position:absolute; top:6px; right:8px; font-size:9.5px; font-weight:800; letter-spacing:.06em; padding:3px 8px; border-radius:9px; color:#fff; }
+.bd.elite{ background:var(--violet); } .bd.new{ background:#1f9e6a; }
+
+/* ---------- do'kon ---------- */
+.sg{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.sc{ position:relative; display:flex; flex-direction:column; padding:14px 13px 13px; border-radius:18px; border:1px solid rgba(var(--gold-rgb),.28);
+  background:linear-gradient(180deg,rgba(var(--gold-rgb),.06),transparent 55%), var(--surface); }
+.sc.elite{ border-color:rgba(139,92,246,.6); background:linear-gradient(180deg,rgba(139,92,246,.14),transparent 60%), var(--surface); box-shadow:0 0 22px rgba(139,92,246,.14); }
+.sc .ic{ width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; background:var(--bg-1); border:1px solid rgba(var(--gold-rgb),.4); margin-bottom:9px; }
+.sc .nm{ font-weight:700; font-size:16.5px; line-height:1.2; min-height:40px; }
+.sc .ds{ font-size:11.5px; color:var(--text-2); line-height:1.35; margin:4px 0 8px; min-height:30px; }
+.sc .pr{ align-self:flex-start; padding:4px 11px; border-radius:16px; font-weight:700; font-size:14px; color:var(--gold-soft); background:var(--bg-1); border:1px solid rgba(var(--gold-rgb),.4); margin-bottom:10px; }
+.sc .own{ font-size:11px; color:var(--em); margin:-4px 0 8px; }
+.sc button{ margin-top:auto; padding:11px 8px; border:none; border-radius:22px; font-weight:800; font-size:14.5px; background:linear-gradient(180deg,var(--gold-soft),var(--gold)); color:#1a1408; }
+.pk{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.pkc{ text-align:center; padding:16px 10px 14px; border-radius:18px; border:1px solid var(--hairline); background:var(--surface); }
+.pkc .a{ font-family:'Cinzel',serif; font-weight:700; font-size:24px; }
+.pkc .s{ color:var(--gold-soft); font-weight:700; margin:5px 0 12px; font-size:16px; }
+.pkc button{ width:100%; padding:11px; border:none; border-radius:22px; font-weight:800; background:linear-gradient(180deg,var(--gold-soft),var(--gold)); color:#1a1408; }
+.pkc .field{ text-align:center; padding:10px; margin:6px 0 4px; font-size:17px; font-weight:700; }
+
+/* ---------- menyu ---------- */
+.tiles{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.tile{ text-align:left; padding:16px 14px; border-radius:18px; border:1px solid var(--hairline); background:linear-gradient(180deg,rgba(var(--gold-rgb),.05),transparent), var(--surface); position:relative; }
+.tile:active{ transform:scale(.97); }
+.tile .ic{ font-size:28px; margin-bottom:8px; }
+.tile .tn{ font-weight:700; font-size:16px; }
+.tile .td{ font-size:12px; color:var(--text-2); margin-top:3px; line-height:1.35; }
+.tile .nd{ position:absolute; top:12px; right:12px; width:10px; height:10px; border-radius:50%; background:var(--blood-soft); }
+
+/* ---------- pastki navigatsiya ---------- */
+.nav{ position:fixed; left:50%; transform:translateX(-50%); bottom:calc(12px + var(--safe-b)); width:min(456px,calc(100% - 20px)); z-index:40; display:flex; gap:4px; padding:7px;
+  border-radius:30px; background:rgba(12,21,16,.86); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(var(--gold-rgb),.35); box-shadow:0 14px 40px rgba(0,0,0,.55); }
+.nav button{ flex:1; display:flex; flex-direction:column; align-items:center; gap:3px; padding:8px 2px 7px; border:none; border-radius:24px; background:transparent; color:var(--text-2); font-size:11.5px; font-weight:600; }
+.nav button .i{ font-size:22px; line-height:1; filter:grayscale(.3); }
+.nav button.on{ background:linear-gradient(180deg,var(--gold-soft),var(--gold)); color:#1a1408; box-shadow:0 6px 18px rgba(var(--gold-rgb),.3); }
+.nav button.on .i{ filter:none; }
+.fab{ position:fixed; right:16px; bottom:calc(96px + var(--safe-b)); width:60px; height:60px; border-radius:50%; border:none; z-index:39; font-size:27px;
+  background:linear-gradient(180deg,var(--gold-soft),var(--gold)); color:#1a1408; box-shadow:0 10px 28px rgba(var(--gold-rgb),.4); display:flex; align-items:center; justify-content:center; }
+.fab:active{ transform:scale(.93); }
+
+/* ---------- oyna va pastki panel ---------- */
+.ov{ position:fixed; inset:0; z-index:80; background:rgba(0,0,0,.62); backdrop-filter:blur(3px); display:none; }
+.ov.show{ display:block; animation:fade .2s; }
+@keyframes fade{ from{ opacity:0; } to{ opacity:1; } }
+.sheet{ position:absolute; left:0; right:0; bottom:0; max-width:480px; margin:0 auto; max-height:88vh; overflow-y:auto; padding:16px 16px calc(22px + var(--safe-b));
+  background:var(--bg-1); border:1px solid rgba(var(--gold-rgb),.4); border-bottom:none; border-radius:26px 26px 0 0; animation:up .28s cubic-bezier(.2,.8,.2,1); }
+@keyframes up{ from{ transform:translateY(60px); opacity:.4; } to{ transform:none; opacity:1; } }
+.sheet .grab{ width:44px; height:5px; border-radius:3px; background:var(--hairline); margin:0 auto 14px; }
+.sheet h3{ margin:0 0 14px; font-family:'Cormorant Garamond',serif; font-size:26px; display:flex; align-items:center; gap:10px; }
+.sheet h3 .x{ margin-left:auto; width:38px; height:38px; border-radius:50%; border:1px solid rgba(var(--gold-rgb),.4); background:transparent; font-size:18px; }
+.dlg{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:min(360px,calc(100% - 36px)); padding:22px 20px 14px; border-radius:22px;
+  background:var(--bg-1); border:1px solid rgba(var(--gold-rgb),.5); box-shadow:0 20px 60px rgba(0,0,0,.6); animation:pop .22s cubic-bezier(.2,.9,.3,1.2); }
+@keyframes pop{ from{ transform:translate(-50%,-46%) scale(.92); opacity:0; } to{ transform:translate(-50%,-50%); opacity:1; } }
+.dlg h4{ margin:0 0 4px; font-family:'Cormorant Garamond',serif; font-size:22px; color:var(--gold-soft); }
+.dlg .big{ font-size:24px; font-weight:700; margin:8px 0; }
+.dlg p{ margin:0 0 14px; color:var(--text-1); line-height:1.55; font-size:15px; white-space:pre-wrap; }
+.dlg .ok{ display:block; margin-left:auto; padding:8px 14px; border:none; background:none; color:var(--gold-soft); font-weight:800; font-size:16px; }
+.dlg .two{ display:flex; gap:10px; justify-content:flex-end; }
+.pop{ position:absolute; z-index:85; min-width:210px; max-height:60vh; overflow-y:auto; padding:8px; border-radius:18px; background:var(--bg-1); border:1px solid rgba(var(--gold-rgb),.45); box-shadow:0 16px 44px rgba(0,0,0,.6); }
+.pop button{ display:flex; align-items:center; gap:12px; width:100%; padding:13px 14px; border:none; border-radius:12px; background:transparent; font-size:16px; font-weight:600; text-align:left; }
+.pop button.on{ background:rgba(var(--gold-rgb),.14); color:var(--gold-soft); }
+.tg{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px 8px; padding:6px 0 4px; }
+.tg button{ background:none; border:none; display:flex; flex-direction:column; align-items:center; gap:8px; color:var(--text-1); font-weight:700; font-size:14px; }
+.tg i{ display:block; width:62px; height:62px; border-radius:50%; border:3px solid transparent; box-shadow:inset 0 -6px 12px rgba(0,0,0,.35); }
+.tg button.on i{ border-color:#fff; box-shadow:0 0 0 4px rgba(var(--gold-rgb),.35), inset 0 -6px 12px rgba(0,0,0,.35); }
+.tg button.on{ color:var(--gold-soft); }
+
+/* ---------- jamoa ---------- */
+.tm{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:14px; }
+.tmc{ text-align:center; padding:16px 10px 14px; border-radius:20px; border:1px solid rgba(var(--gold-rgb),.35); background:var(--surface); }
+.tmc .av{ position:relative; width:84px; height:84px; margin:0 auto 10px; border-radius:50%; border:3px solid var(--gold); display:flex; align-items:center; justify-content:center;
+  background:var(--bg-1); font-family:'Cinzel',serif; font-size:30px; color:var(--gold-soft); }
+.tmc .av::after{ content:'✓'; position:absolute; right:-4px; bottom:-2px; width:28px; height:28px; border-radius:50%; background:var(--gold-soft); color:#1a1408; font-weight:900; font-size:15px; display:flex; align-items:center; justify-content:center; border:2px solid var(--bg-1); }
+.tmc .n{ font-family:'Cormorant Garamond',serif; font-weight:700; font-size:20px; }
+.tmc .r{ color:var(--gold-soft); font-weight:700; font-size:14px; margin:3px 0; }
+.tmc .p{ color:var(--text-2); font-size:13px; margin-bottom:10px; }
+.tmc button{ padding:8px 16px; border-radius:18px; border:1px solid rgba(var(--gold-rgb),.5); background:transparent; color:var(--gold-soft); font-weight:700; font-size:14px; }
+.botc{ display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:16px; border:1px solid var(--hairline); background:var(--surface); margin-bottom:10px; }
+.botc .bi{ font-size:28px; } .botc .bn{ font-weight:700; } .botc .bd2{ font-size:12px; color:var(--text-2); }
+.botc button{ margin-left:auto; padding:8px 14px; border-radius:16px; border:none; background:linear-gradient(180deg,var(--gold-soft),var(--gold)); color:#1a1408; font-weight:800; }
+
+/* ---------- yordam (chat) ---------- */
+.chat{ display:flex; flex-direction:column; height:calc(100vh - 210px); min-height:380px; border-radius:20px; border:1px solid rgba(var(--gold-rgb),.35); overflow:hidden; background:var(--bg-1); position:relative; }
+.chat::before{ content:''; position:absolute; inset:0; background:radial-gradient(90% 60% at 50% 30%, rgba(var(--gold-rgb),.08), transparent 70%); pointer-events:none; }
+.chat-body{ position:relative; flex:1; overflow-y:auto; padding:14px; display:flex; flex-direction:column; gap:8px; }
+.hello{ margin:auto; max-width:82%; text-align:center; padding:16px 18px; border-radius:20px; border:1px solid rgba(var(--gold-rgb),.45); background:rgba(12,21,16,.8); color:var(--text-0); line-height:1.6; font-size:15.5px; }
+.bub{ max-width:82%; padding:10px 13px; border-radius:16px; font-size:15px; line-height:1.45; word-break:break-word; }
+.bub.me{ align-self:flex-end; background:rgba(var(--gold-rgb),.17); border:1px solid rgba(var(--gold-rgb),.42); border-bottom-right-radius:5px; }
+.bub.op{ align-self:flex-start; background:var(--surface-2); border:1px solid var(--hairline); border-bottom-left-radius:5px; }
+.bub small{ display:block; font-size:10.5px; color:var(--text-2); margin-top:4px; }
+.chat-in{ position:relative; display:flex; gap:9px; padding:10px; border-top:1px solid var(--hairline); background:rgba(12,21,16,.92); align-items:center; }
+.chat-in .field{ margin:0; flex:1; padding:12px 14px; }
+.chat-in .sq{ flex:none; width:46px; height:46px; border-radius:14px; border:1px solid rgba(var(--gold-rgb),.45); background:var(--surface); font-size:20px; }
+.chat-in .send{ flex:none; width:50px; height:50px; border-radius:50%; border:none; background:linear-gradient(180deg,var(--gold-soft),var(--gold)); color:#1a1408; font-size:21px; }
+.bub img{ display:block; max-width:100%; border-radius:10px; margin-bottom:6px; }
+
+/* ---------- Taqdir / geroy / boshqa ---------- */
+.tabs{ display:flex; gap:9px; margin:0 0 14px; overflow-x:auto; padding-bottom:2px; }
+.tabs button{ flex:none; padding:11px 16px; border-radius:26px; border:1px solid var(--hairline); background:var(--surface); color:var(--text-1); font-weight:700; font-size:14.5px; white-space:nowrap; }
+.tabs button.on{ border-color:rgba(var(--gold-rgb),.7); color:var(--gold-soft); background:rgba(var(--gold-rgb),.12); box-shadow:0 0 16px rgba(var(--gold-rgb),.16); }
+.tabs.pink button.on{ border-color:transparent; color:#fff; background:linear-gradient(90deg,#ff5f9e,#c04dd8); box-shadow:0 8px 22px rgba(255,95,158,.3); }
+.galaxy{ position:relative; border:1px solid var(--hairline); border-radius:20px; overflow:hidden; margin-bottom:12px; background:radial-gradient(90% 90% at 50% 50%, rgba(255,111,145,.12), transparent 70%), var(--bg-0); }
+.galaxy canvas{ display:block; width:100%; height:300px; }
+.galaxy .tag{ position:absolute; top:12px; left:12px; padding:6px 12px; border-radius:20px; font-weight:700; font-size:13.5px; background:rgba(10,15,12,.75); border:1px solid rgba(255,111,145,.45); }
+.pill{ text-align:center; font-size:13px; color:var(--text-1); padding:11px; border-radius:14px; background:var(--surface); border:1px solid var(--hairline); margin-top:10px; }
+.fg{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.fc{ position:relative; text-align:center; background:linear-gradient(180deg,rgba(255,111,145,.09),transparent 50%), var(--surface); border:1px solid rgba(255,111,145,.28); border-radius:20px; padding:18px 10px 14px; }
+.fc::before{ content:'💗'; position:absolute; top:9px; left:11px; font-size:14px; }
+.fav{ width:78px; height:78px; margin:0 auto 9px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Cinzel',serif; font-size:28px; color:#fff;
+  background:linear-gradient(140deg,#ff6f91,#b36bff); border:3px solid rgba(255,140,190,.75); box-shadow:0 0 22px rgba(255,111,145,.25); }
+.fn{ font-weight:700; font-size:16px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.fq{ margin:8px auto; padding:7px 10px; border-radius:12px; border:1px solid rgba(255,111,145,.35); font-family:'Cormorant Garamond',serif; font-style:italic; font-size:15px; color:var(--text-1); min-height:34px; }
+.fp{ display:inline-block; padding:6px 16px; border-radius:22px; font-weight:800; font-size:15px; color:#9fd1ff; background:#12233a; border:1px solid rgba(90,150,255,.4); margin-bottom:11px; }
+.fc button{ width:100%; padding:11px 8px; border:none; border-radius:22px; font-weight:800; font-size:14.5px; background:linear-gradient(180deg,var(--gold-soft),var(--gold)); color:#1a1408; }
+.fore{ text-align:center; }
+.fore .pc{ font-family:'Cinzel',serif; font-size:56px; font-weight:700; color:var(--rose); line-height:1; }
+.fore .ad{ font-family:'Cormorant Garamond',serif; font-style:italic; font-size:19px; line-height:1.4; margin:12px 4px; }
+.hero-c{ position:relative; border:1px solid var(--hairline); border-radius:20px; padding:16px; margin-bottom:14px; background:var(--surface); overflow:hidden; }
+.hero-c.r-af{ border-color:rgba(var(--gold-rgb),.7); background:radial-gradient(120% 90% at 50% 0%, rgba(var(--gold-rgb),.18), transparent 65%), var(--surface); }
+.hero-c.r-af::before{ content:''; position:absolute; top:0; left:-60%; width:40%; height:100%; background:linear-gradient(100deg,transparent,rgba(var(--gs-rgb),.2),transparent); animation:shim 4.2s ease-in-out infinite; }
+@keyframes shim{ 0%{ left:-60%; } 55%,100%{ left:130%; } }
+.hero-c .hn{ font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:700; font-size:25px; }
+.hero-c .hr{ font-size:12.5px; color:var(--gold-soft); margin:2px 0 8px; }
+.pips{ display:flex; gap:6px; margin:6px 0 12px; }
+.pips span{ flex:1; height:8px; border-radius:5px; background:var(--surface-2); border:1px solid var(--hairline); }
+.pips span.on{ background:linear-gradient(90deg,var(--gold),var(--gold-soft)); border-color:transparent; }
+.ab{ display:flex; gap:10px; padding:10px 0; border-top:1px solid var(--hairline); }
+.ab .i{ flex:none; width:24px; text-align:center; }
+.ab .n{ font-weight:700; font-size:14.5px; } .ab .d{ font-size:12.5px; color:var(--text-2); line-height:1.4; margin-top:2px; }
+.ab.lk .n{ color:var(--text-2); }
+.row2{ display:flex; gap:9px; } .row2 > *{ flex:1; }
+.lst{ border:1px solid var(--hairline); border-radius:var(--r-lg); overflow:hidden; background:var(--surface); margin-bottom:14px; }
+.li{ display:flex; align-items:center; gap:12px; padding:13px 14px; }
+.li + .li{ border-top:1px solid var(--hairline); }
+.li .a{ flex:none; font-size:22px; width:30px; text-align:center; }
+.li .b{ flex:1; min-width:0; } .li .b b{ display:block; font-size:15px; } .li .b span{ font-size:12.5px; color:var(--text-2); }
+.li .z{ font-family:'Cinzel',serif; font-weight:700; color:var(--gold-soft); }
+.li .z.neg{ color:var(--blood-soft); } .li .z.pos{ color:var(--em); }
+.tgl{ position:relative; flex:none; width:48px; height:28px; border-radius:16px; border:1px solid var(--hairline); background:var(--bg-1); }
+.tgl i{ position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%; background:var(--text-2); transition:.2s; }
+.tgl.on{ background:rgba(var(--em-rgb),.25); border-color:var(--em); } .tgl.on i{ left:23px; background:var(--em); }
+.q{ padding:13px 14px; } .q + .q{ border-top:1px solid var(--hairline); }
+.q .h{ display:flex; gap:10px; align-items:center; font-weight:700; } .q .h span:last-child{ margin-left:auto; color:var(--gold-soft); font-family:'Cinzel',serif; }
+.q .track{ margin:9px 0 6px; height:8px; } .q .m{ display:flex; justify-content:space-between; font-size:12px; color:var(--text-2); align-items:center; }
+.q button{ padding:7px 14px; border:none; border-radius:16px; font-weight:800; background:linear-gradient(180deg,var(--gold-soft),var(--gold)); color:#1a1408; }
+.q .done{ color:var(--em); font-weight:700; }
+.cs{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.cosc{ position:relative; text-align:center; padding:16px 10px 12px; border-radius:18px; border:1px solid rgba(var(--gold-rgb),.35); background:var(--surface); overflow:hidden; }
+.cosc.k-frame{ box-shadow:inset 0 0 0 1px rgba(var(--gold-rgb),.18); } .cosc.k-anim{ box-shadow:0 0 26px rgba(139,92,246,.22); } .cosc.k-skin{ box-shadow:0 0 26px rgba(var(--em-rgb),.2); }
+.cosc .e{ font-size:40px; margin-bottom:6px; } .cosc .n{ font-weight:700; font-size:15.5px; }
+.cosc .st{ display:inline-block; margin:6px 0 4px; padding:3px 9px; border-radius:10px; font-size:11px; color:var(--text-2); border:1px solid var(--hairline); }
+.cosc .st.low{ color:#ffc9c9; border-color:var(--blood-soft); }
+.cosc .p{ font-weight:800; color:var(--gold-soft); margin:4px 0 9px; }
+.cosc button{ width:100%; padding:10px; border:none; border-radius:20px; font-weight:800; background:linear-gradient(180deg,var(--gold-soft),var(--gold)); color:#1a1408; }
+.cosc .own{ color:var(--em); font-weight:700; padding:10px 0; }
+.medal{ width:30px; text-align:center; font-weight:800; }
+.pgc{ display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid rgba(var(--gold-rgb),.3); border-radius:16px; padding:13px; margin-bottom:10px; }
+.pgc .i{ flex:none; width:46px; height:46px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:22px; background:rgba(var(--gold-rgb),.12); border:1px solid rgba(var(--gold-rgb),.4); }
+.pgc .m{ flex:1; min-width:0; } .pgc .t{ font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; } .pgc .s{ font-size:12.5px; color:var(--text-2); margin-top:2px; }
+.pgc button{ flex:none; padding:10px 15px; border:none; border-radius:18px; font-weight:800; background:linear-gradient(180deg,var(--gold-soft),var(--gold)); color:#1a1408; }
+
+/* ---------- effektlar ---------- */
+#fx{ position:fixed; inset:0; width:100%; height:100%; pointer-events:none; z-index:120; }
+.toast{ position:fixed; left:50%; bottom:calc(104px + var(--safe-b)); transform:translateX(-50%) translateY(16px); opacity:0; z-index:130; max-width:88%; padding:12px 18px; border-radius:16px;
+  background:var(--surface-2); border:1px solid rgba(var(--gold-rgb),.6); font-size:14px; line-height:1.4; text-align:center; box-shadow:0 12px 34px rgba(0,0,0,.55), 0 0 24px rgba(var(--gold-rgb),.18);
+  transition:.28s; pointer-events:none; }
+.toast.show{ opacity:1; transform:translateX(-50%) translateY(0); } .toast.err{ border-color:var(--blood-soft); }
+.shine{ position:relative; overflow:hidden; }
+.shine::after{ content:''; position:absolute; top:0; left:-70%; width:45%; height:100%; background:linear-gradient(100deg,transparent,rgba(255,255,255,.28),transparent); animation:shim 3.6s ease-in-out infinite; }
+
+/* ==========================================================================
+   ✨ 10x CHIROY — ambient zarralar, tugma bosilish effekti, jonlanish
+   ========================================================================== */
+#amb{ position:fixed; inset:0; z-index:1; pointer-events:none; overflow:hidden; }
+#amb span{ position:absolute; bottom:-6vh; border-radius:50%; opacity:0;
+  animation:amb-float linear infinite; }
+#amb span.c1{ background:radial-gradient(circle, rgba(var(--gold-rgb),.95), rgba(var(--gold-rgb),0) 72%); box-shadow:0 0 10px rgba(var(--gold-rgb),.5); }
+#amb span.c2{ background:radial-gradient(circle, rgba(var(--em-rgb),.9), rgba(var(--em-rgb),0) 72%); box-shadow:0 0 10px rgba(var(--em-rgb),.45); }
+#amb span.c3{ background:radial-gradient(circle, rgba(var(--gs-rgb),.85), rgba(var(--gs-rgb),0) 72%); box-shadow:0 0 8px rgba(var(--gs-rgb),.4); }
+@keyframes amb-float{ 0%{ transform:translateY(0) translateX(0) scale(.6); opacity:0; } 8%{ opacity:.85; } 92%{ opacity:.5; } 100%{ transform:translateY(-112vh) translateX(var(--dx,18px)) scale(1); opacity:0; } }
+body::before{ content:''; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:radial-gradient(38% 24% at 12% 8%, rgba(var(--gold-rgb),.1), transparent 60%), radial-gradient(30% 22% at 92% 14%, rgba(var(--em-rgb),.09), transparent 60%);
+  animation:bg-drift 16s ease-in-out infinite alternate; }
+@keyframes bg-drift{ from{ opacity:.7; transform:scale(1); } to{ opacity:1; transform:scale(1.06); } }
+button, .rowcard, .tile, .sc button, .cosc button, .q button, .fc button, .pgc button{ transition:transform .16s cubic-bezier(.2,.8,.2,1), filter .16s, box-shadow .16s; }
+button:active, .rowcard:active, .tile:active{ transform:scale(.955); filter:brightness(.94); }
+.btn-gold, .btn-ghost{ position:relative; overflow:hidden; }
+.avatar{ animation:avatar-pulse 3.4s ease-in-out infinite; }
+@keyframes avatar-pulse{ 0%,100%{ box-shadow:0 0 26px rgba(var(--gold-rgb),.28); } 50%{ box-shadow:0 0 38px rgba(var(--gold-rgb),.5); } }
+.card.gold{ animation:card-glow 4.8s ease-in-out infinite; }
+@keyframes card-glow{ 0%,100%{ box-shadow:0 0 0 1px rgba(var(--gold-rgb),.08) inset, 0 10px 34px rgba(0,0,0,.35); } 50%{ box-shadow:0 0 0 1px rgba(var(--gold-rgb),.22) inset, 0 10px 40px rgba(0,0,0,.4), 0 0 30px rgba(var(--gold-rgb),.12); } }
+.nav button.on .i{ animation:nav-pop .32s ease; filter:drop-shadow(0 0 8px rgba(var(--gold-rgb),.65)); }
+@keyframes nav-pop{ 0%{ transform:scale(1); } 45%{ transform:scale(1.32); } 100%{ transform:scale(1); } }
+.soundBtn{ position:fixed; top:calc(10px + env(safe-area-inset-top,0px)); right:12px; z-index:95; width:38px; height:38px; border-radius:12px; border:1px solid var(--hairline); background:var(--surface); font-size:16px; opacity:.85; }
+
+/* ---------- 👑 ELITE — chegirma banner / feed / taqqoslash ---------- */
+.eliteBanner{ position:relative; overflow:hidden; border-radius:var(--r-lg); padding:13px 14px; margin-bottom:14px; text-align:center;
+  background:linear-gradient(120deg, rgba(var(--gold-rgb),.22), rgba(var(--em-rgb),.14)); border:1px solid rgba(var(--gold-rgb),.5); animation:banner-glow 2.6s ease-in-out infinite; }
+@keyframes banner-glow{ 0%,100%{ box-shadow:0 0 14px rgba(var(--gold-rgb),.18); } 50%{ box-shadow:0 0 26px rgba(var(--gold-rgb),.38); } }
+.eliteBanner b{ font-family:'Cinzel',serif; color:var(--gold-soft); font-size:14.5px; }
+.eliteBanner .cd{ font-family:'Cinzel',serif; font-size:19px; font-weight:700; color:var(--text-0); margin-top:3px; letter-spacing:.04em; }
+.pr-old{ text-decoration:line-through; opacity:.55; margin-right:5px; font-size:12.5px; }
+.eliteFeed{ height:20px; overflow:hidden; position:relative; margin:0 0 12px; text-align:center; font-size:12.5px; color:var(--text-2); }
+.eliteFeed .row{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; gap:6px; opacity:0; animation:feed-cycle 3.6s ease-in-out infinite; }
+@keyframes feed-cycle{ 0%{ opacity:0; transform:translateY(8px); } 8%,26%{ opacity:1; transform:translateY(0); } 34%{ opacity:0; transform:translateY(-8px); } 100%{ opacity:0; } }
+.cmpT{ width:100%; border-collapse:collapse; margin-top:6px; }
+.cmpT th{ font-family:'Cinzel',serif; font-size:11px; letter-spacing:.06em; color:var(--text-2); text-transform:uppercase; padding:6px 4px; text-align:center; }
+.cmpT th:first-child{ text-align:left; }
+.cmpT td{ padding:9px 4px; text-align:center; border-top:1px solid var(--hairline); font-size:13px; }
+.cmpT td:first-child{ text-align:left; color:var(--text-1); }
+.cmpT td.yes{ color:var(--em); font-weight:800; } .cmpT td.no{ color:var(--text-2); }
+.elitePreview{ display:flex; align-items:center; gap:12px; padding:12px; border-radius:16px; background:var(--surface-2); border:1px solid rgba(var(--gold-rgb),.35); margin:12px 0; }
+.elitePreview .av{ flex:none; width:56px; height:56px; border-radius:50%; padding:2.5px; background:conic-gradient(from 210deg,var(--gold-soft),var(--gold),var(--em),var(--gold-soft)); animation:avatar-pulse 2.4s ease-in-out infinite; }
+.elitePreview .av i{ display:flex; width:100%; height:100%; border-radius:50%; background:var(--surface); align-items:center; justify-content:center; font-size:20px; }
+.elitePreview .nm{ font-weight:800; display:flex; align-items:center; gap:5px; } .elitePreview .sub{ font-size:12px; color:var(--text-2); margin-top:2px; }
+
+/* ---------- 👑 OWNER PANEL ---------- */
+.ownStats{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px; }
+.ownStat{ background:var(--surface); border:1px solid var(--hairline); border-radius:16px; padding:12px; text-align:center; }
+.ownStat .n{ font-family:'Cinzel',serif; font-size:21px; font-weight:700; color:var(--gold-soft); }
+.ownStat .l{ font-size:11px; color:var(--text-2); margin-top:2px; text-transform:uppercase; letter-spacing:.05em; }
+.ownRow{ display:flex; align-items:center; gap:12px; padding:12px 14px; }
+.ownRow + .ownRow{ border-top:1px solid var(--hairline); }
+.ownRow .lab{ flex:1; font-size:14px; font-weight:600; margin:0; }
+.ownDisc{ display:flex; gap:8px; margin-top:10px; }
+.ownDisc input{ flex:1; }
+@media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } #amb{ display:none; } }
+</style>
+</head>
+<body>
+<div id="amb"></div>
+<button class="soundBtn" id="soundBtn" title="Ovoz">🔊</button>
+<div class="app" id="app">
+
+  <!-- ============ ASOSIY ============ -->
+  <section class="page active" id="p-home"><div id="homeBox"><div class="empty" data-i18n="loading">Yuklanmoqda...</div></div></section>
+
+  <!-- ============ ROLLAR ============ -->
+  <section class="page" id="p-roles">
+    <div class="ph"><h1 data-i18n="roles">Rollar</h1><p data-i18n="rolesSub">Barcha rollar va ularning qobiliyatlari</p></div>
+    <div class="search"><input id="roleQ" data-ph="searchRole" autocomplete="off"></div>
+    <div id="rolesBox"><div class="empty" data-i18n="loading">Yuklanmoqda...</div></div>
+  </section>
+
+  <!-- ============ DO'KON ============ -->
+  <section class="page" id="p-shop">
+    <div id="shopHead"></div>
+    <div id="shopBox"><div class="empty" data-i18n="loading">Yuklanmoqda...</div></div>
+  </section>
+
+  <!-- ============ O'TKAZMA ============ -->
+  <section class="page" id="p-transfer">
+    <div id="trHead"></div>
+    <div class="ph"><h1 data-i18n="transfer">O'tkazma</h1><p data-i18n="transferSub">Dollar, olmos yoki inventar buyumini boshqa foydalanuvchiga o'tkazing</p></div>
+    <div class="card gold">
+      <div class="lab" data-i18n="toWhom">Kimga:</div>
+      <div class="seg" id="trTo">
+        <button data-v="username" class="on">@ Username</button>
+        <button data-v="id">🆔 Telegram ID</button>
+        <button data-v="param">💞 Param</button>
+      </div>
+      <input class="field" id="trTarget" autocomplete="off" autocapitalize="off">
+      <div class="lab" data-i18n="what">Nima:</div>
+      <div class="seg" id="trWhat">
+        <button data-v="dollar" class="on">💵 Dollar</button>
+        <button data-v="diamond">💎 Olmos</button>
+        <button data-v="coin">🪙 Coin</button>
+        <button data-v="inventory">🎒 Inventar</button>
+      </div>
+      <div id="trItemBox" style="display:none;"><div class="lab" data-i18n="item">Buyum:</div><div class="seg" id="trItems"></div></div>
+      <div class="lab" data-i18n="amount">Miqdor:</div>
+      <input class="field" id="trAmount" type="number" min="1" inputmode="numeric" placeholder="100">
+      <button class="btn-gold" id="trBtn" data-i18n="send">O'tkazish</button>
+      <div class="hint" data-i18n="transferHint">O'tkazma qaytarilmaydi. Oluvchi botga kamida bir marta /start yozgan bo'lishi kerak.</div>
+    </div>
+  </section>
+
+  <!-- ============ MENYU ============ -->
+  <section class="page" id="p-menu">
+    <div class="ph"><h1 data-i18n="menu">Menyu</h1><p data-i18n="menuSub">Barcha bo'limlar shu yerda</p></div>
+    <div class="tiles" id="menuTiles"></div>
+  </section>
+
+  <!-- ============ SEVGI GALAKTIKASI ============ -->
+  <section class="page" id="p-love">
+    <div class="ph row"><button class="back" data-back>‹</button><div><h1 data-i18n="loveTitle">Sevgi galaktikasi</h1><p data-i18n="loveSub">Juft top · Taqdir · Bashorat</p></div></div>
+    <div class="tabs" id="loveTabs">
+      <button data-t="gal" class="on">💫 <span data-i18n="tGal">Galaktika</span></button>
+      <button data-t="fate">💘 <span data-i18n="tFate">Taqdir</span></button>
+      <button data-t="fore">🔮 <span data-i18n="tFore">Taqdir bashorati</span></button>
+    </div>
+    <div id="love-gal">
+      <div class="galaxy"><canvas id="galCv"></canvas><div class="tag">💞 <b id="freeStars">0</b> <span data-i18n="freeStars">bo'sh yulduz</span></div></div>
+      <button class="btn-gold full" id="pairBtn" data-i18n="pairBtn">🎲 Tasodifiy para top</button>
+      <div class="pill" id="pairPill" style="display:none;"></div>
+      <div class="hint" data-i18n="pairHint">Tasodifiy bo'ydoq o'yinchiga so'rov yuboriladi. U 10 daqiqa ichida qabul qilsa, ikkingiz juft bo'lasiz. So'rov botga ham keladi.</div>
+    </div>
+    <div id="love-fate" style="display:none;">
+      <p class="hint" style="text-align:left;margin:0 2px 12px;font-size:14px;" data-i18n="fateSub">Taqdiringni top — mahringizni qo'ying yoki sherik tanlang</p>
+      <div class="tabs pink" id="fateTabs">
+        <button data-t="find" class="on" style="flex:1;"><span data-i18n="tFind">Kashf et</span></button>
+        <button data-t="mine" style="flex:1;"><span data-i18n="tMine">Mening kartam</span></button>
+      </div>
+      <div id="fateBox"></div>
+    </div>
+    <div id="love-fore" style="display:none;"><div id="foreBox"></div></div>
+  </section>
+
+  <!-- ============ GEROY ============ -->
+  <section class="page" id="p-hero">
+    <div class="ph row"><button class="back" data-back>‹</button><div><h1 data-i18n="hero">Mening geroyim</h1><p data-i18n="heroSub">Geroy tanlang va kuchaytiring</p></div></div>
+    <div id="heroBox"><div class="empty" data-i18n="loading">Yuklanmoqda...</div></div>
+  </section>
+
+  <!-- ============ KLAN ============ -->
+  <section class="page" id="p-clan">
+    <div class="ph row"><button class="back" data-back>‹</button><div><h1 data-i18n="clan">Klan</h1></div></div>
+    <div id="clanBox"><div class="empty" data-i18n="loading">Yuklanmoqda...</div></div>
+  </section>
+
+  <!-- ============ REYTING ============ -->
+  <section class="page" id="p-top">
+    <div class="ph row"><button class="back" data-back>‹</button><div><h1 data-i18n="top">Reyting</h1></div></div>
+    <div class="tabs" id="topTabs"><button data-t="server" class="on">🌐 Server</button><button data-t="group">👥 Guruh</button></div>
+    <div id="topBox"><div class="empty" data-i18n="loading">Yuklanmoqda...</div></div>
+  </section>
+
+  <!-- ============ KOSMETIKA ============ -->
+  <section class="page" id="p-skins">
+    <div class="ph row"><button class="back" data-back>‹</button><div><h1 data-i18n="skins">Kosmetika</h1><p data-i18n="skinsSub">Ramka, animatsiya va skinlar</p></div></div>
+    <div id="skinsBox"><div class="empty" data-i18n="loading">Yuklanmoqda...</div></div>
+  </section>
+
+  <!-- ============ VAZIFALAR ============ -->
+  <section class="page" id="p-quests">
+    <div class="ph row"><button class="back" data-back>‹</button><div><h1 data-i18n="quests">Vazifalar</h1><p data-i18n="questsSub">Kunlik va haftalik topshiriqlar</p></div></div>
+    <div id="questsBox"><div class="empty" data-i18n="loading">Yuklanmoqda...</div></div>
+  </section>
+
+  <!-- ============ TARIX ============ -->
+  <section class="page" id="p-history">
+    <div class="ph row"><button class="back" data-back>‹</button><div><h1 data-i18n="history">Tarix</h1><p data-i18n="historySub">So'nggi natijalaringiz</p></div></div>
+    <div id="historyBox"><div class="empty" data-i18n="loading">Yuklanmoqda...</div></div>
+  </section>
+
+  <!-- ============ YANGILIKLAR ============ -->
+  <section class="page" id="p-news">
+    <div class="ph row"><button class="back" data-back>‹</button><div><h1 data-i18n="news">Yangiliklar</h1></div></div>
+    <div id="newsBox"><div class="empty" data-i18n="loading">Yuklanmoqda...</div></div>
+  </section>
+
+  <!-- ============ PREMIUM GURUHLAR ============ -->
+  <section class="page" id="p-premium">
+    <div class="ph row"><button class="back" data-back>‹</button><div><h1 data-i18n="premium">Premium guruhlar</h1><p data-i18n="premiumSub">Yopiq guruhlarga kirish</p></div></div>
+    <div id="premiumBox"><div class="empty" data-i18n="loading">Yuklanmoqda...</div></div>
+    <div class="hint" data-i18n="premiumHint">To'lovdan keyin sizga bir martalik taklif havolasi beriladi (24 soat amal qiladi).</div>
+  </section>
+
+  <!-- ============ YORDAM ============ -->
+  <section class="page" id="p-help">
+    <div class="ph row"><button class="back" data-back>‹</button><div><h1 data-i18n="help">Yordam</h1></div></div>
+    <div class="chat">
+      <div class="chat-body" id="chatBody"></div>
+      <div class="chat-in">
+        <button class="sq" id="chatPhotoBtn" aria-label="rasm">🖼</button>
+        <input type="file" id="chatFile" accept="image/*" style="display:none;">
+        <input class="field" id="chatInput" maxlength="1000" data-ph="typeMsg" autocomplete="off">
+        <button class="send" id="chatSend" aria-label="yuborish">➤</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOZLAMALAR ============ -->
+  <section class="page" id="p-settings">
+    <div class="ph row"><button class="back" data-back>‹</button><div><h1 data-i18n="settings">Sozlamalar</h1></div></div>
+    <div class="sect"><span data-i18n="theme">Mavzu</span></div>
+    <div class="card"><div class="tg" id="themeGridPage"></div></div>
+    <div class="sect"><span data-i18n="language">Til</span></div>
+    <div class="lst" id="langList"></div>
+    <div class="hint" data-i18n="langHint">Til faqat Mini ilova interfeysiga ta'sir qiladi. Botning tilini botda /lang orqali o'zgartirasiz.</div>
+  </section>
+
+  <!-- ============ O'YIN ============ -->
+  <section class="page" id="p-play">
+    <div class="ph row"><button class="back" data-back>‹</button><div><h1 data-i18n="play">O'yin</h1></div></div>
+    <div class="card gold"><div class="card-t"><span class="ic">🥷</span>Hunter Mafia</div>
+      <p style="margin:0 0 12px;color:var(--text-1);line-height:1.55;" data-i18n="playText">Asosiy o'yin guruhda /NewGame orqali boshlanadi. Botni guruhingizga qo'shing va admin qiling.</p>
+      <button class="btn-gold full" id="addGroupBtn" data-i18n="addGroup">Guruhga qo'shish</button></div>
+    <div class="card"><div class="card-t"><span class="ic">🗝</span><span data-i18n="chest">Sirli sandiq va omad o'yinlari</span></div>
+      <p style="margin:0 0 12px;color:var(--text-1);line-height:1.55;" data-i18n="chestText">Sandiq va omad g'ildiragi botning o'zida: /sandiq, /gildirak.</p>
+      <button class="btn-ghost full" id="openBotBtn" data-i18n="openBot">Botni ochish</button></div>
+  </section>
+
+  <!-- ============ 👑 OWNER PANEL (faqat bot egasiga ko'rinadi) ============ -->
+  <section class="page" id="p-owner">
+    <div class="ph row"><button class="back" data-back>‹</button><div><h1 data-i18n="ownerT">Boshqaruv paneli</h1><p data-i18n="ownerSub">Botni kod yozmasdan shu yerdan boshqaring</p></div></div>
+    <div id="ownerBox"><div class="empty" data-i18n="loading">Yuklanmoqda...</div></div>
+  </section>
+
+</div>
+
+<nav class="nav" id="nav">
+  <button data-go="home" class="on"><span class="i">🏠</span><span data-i18n="navHome">Asosiy</span></button>
+  <button data-go="roles"><span class="i">🎭</span><span data-i18n="navRoles">Rollar</span></button>
+  <button data-go="shop"><span class="i">🏪</span><span data-i18n="navShop">Do'kon</span></button>
+  <button data-go="transfer"><span class="i">🔁</span><span data-i18n="navTransfer">O'tkazma</span></button>
+  <button data-go="menu"><span class="i">☰</span><span data-i18n="navMenu">Menyu</span></button>
+</nav>
+<button class="fab" id="fab" aria-label="yordam">🎧</button>
+<div class="ov" id="ov"></div>
+<canvas id="fx"></canvas>
+<div class="toast" id="toast"></div>
+<script>
+(() => {
+'use strict';
+/* ==========================================================================
+   HUNTER MAFIA — MINI ILOVA (JS)
+   ========================================================================== */
+// ⚙️ SOZLAMALAR — hosting qilgach shu 2 qatorni o'zingiznikiga moslang
+const API_BASE_URL = "https://hunter-mafia-production.up.railway.app";
+const BOT_USERNAME = "HanterMafiaBot";
+// 👥 "Bizning botlar" oynasi: bot egasi kartasi serverdan keladi (/api/team). Qo'shimcha botlaringiz:
+const OUR_BOTS = [
+  { icon: '🥷', name: 'Hunter Mafia', desc: "Mafia o'yin boti", username: BOT_USERNAME },
+  // { icon: '🎬', name: 'VALOR CINEMA', desc: 'Kino boti', username: 'ValorKinoBot' },
+];
+
+const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
+if (tg) { try { tg.ready(); tg.expand(); tg.setHeaderColor('#070d0a'); tg.setBackgroundColor('#070d0a'); } catch (e) {} }
+const initData = tg && tg.initData ? tg.initData : '';
+const TGU = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user : null;
+const $ = id => document.getElementById(id);
+const REDUCED = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+// ---------------------------------------------------------------- 🔊 tovushlar (WebAudio — fayl kerak emas)
+const SND = (() => {
+  let ctx = null, on = lsGet('hm_sound', '1') === '1';
+  function ac(){ if (!ctx) { try { ctx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { ctx = null; } } if (ctx && ctx.state === 'suspended') { try { ctx.resume(); } catch (e) {} } return ctx; }
+  // 🎵 yumshoq, "quloqqa yoqimli" ohang — faqat sine/triangle + iliq low-pass filtr, keskin tovushlarsiz
+  function note(freq, dur, opt){
+    opt = opt || {}; if (!on || REDUCED) return; const c = ac(); if (!c) return;
+    const t0 = c.currentTime + (opt.delay || 0), o = c.createOscillator(), g = c.createGain(), f = c.createBiquadFilter();
+    o.type = opt.type || 'sine'; o.frequency.setValueAtTime(freq, t0);
+    f.type = 'lowpass'; f.frequency.setValueAtTime(opt.cut || 2600, t0); f.Q.setValueAtTime(.7, t0);
+    const peak = opt.gain || .08, atk = opt.attack || .014;
+    g.gain.setValueAtTime(0, t0); g.gain.linearRampToValueAtTime(peak, t0 + atk); g.gain.exponentialRampToValueAtTime(.0001, t0 + dur);
+    o.connect(f); f.connect(g); g.connect(c.destination); o.start(t0); o.stop(t0 + dur + .03);
+  }
+  return {
+    tap(){ note(659.25, .06, { type: 'sine', gain: .05, cut: 3200 }); },
+    nav(){ note(523.25, .08, { type: 'triangle', gain: .05, cut: 2400 }); note(659.25, .09, { type: 'triangle', gain: .045, cut: 2400, delay: .045 }); },
+    coin(){ note(659.25, .1, { type: 'triangle', gain: .07, cut: 3400 }); note(783.99, .11, { type: 'triangle', gain: .06, cut: 3400, delay: .05 }); note(1046.5, .17, { type: 'sine', gain: .055, cut: 3800, delay: .1 }); },
+    success(){ note(523.25, .11, { type: 'sine', gain: .065, cut: 2600 }); note(659.25, .12, { type: 'sine', gain: .06, cut: 2600, delay: .08 }); note(783.99, .18, { type: 'sine', gain: .055, cut: 2800, delay: .16 }); },
+    error(){ note(392, .17, { type: 'sine', gain: .06, cut: 1600 }); note(329.63, .22, { type: 'sine', gain: .05, cut: 1500, delay: .09 }); },
+    open(){ note(587.33, .07, { type: 'sine', gain: .045, cut: 2600 }); },
+    toggle(v){ on = v; lsSet('hm_sound', v ? '1' : '0'); },
+    isOn(){ return on; },
+  };
+})();
+
+// ---------------------------------------------------------------- ✨ ambient zarralar
+(function ambient(){
+  if (REDUCED) return;
+  const box = $('amb'); if (!box) return;
+  const N = 16, cls = ['c1', 'c1', 'c2', 'c3'];
+  for (let i = 0; i < N; i++) {
+    const s = document.createElement('span'), size = Math.random() * 5 + 3;
+    s.className = cls[(Math.random() * cls.length) | 0];
+    s.style.left = Math.random() * 100 + '%'; s.style.width = size + 'px'; s.style.height = size + 'px';
+    s.style.setProperty('--dx', (Math.random() * 60 - 30) + 'px');
+    s.style.animationDuration = (Math.random() * 9 + 10) + 's'; s.style.animationDelay = (-Math.random() * 18) + 's';
+    box.appendChild(s);
+  }
+})();
+
+// ---------------------------------------------------------------- yordamchilar
+function esc(v){ return String(v == null ? '' : v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function fmt(n){ return (Number(n) || 0).toLocaleString('ru-RU'); }
+function lsGet(k, d){ try { const v = localStorage.getItem(k); return v === null ? d : v; } catch (e) { return d; } }
+function lsSet(k, v){ try { localStorage.setItem(k, v); } catch (e) {} }
+function toast(msg, isErr){
+  const el = $('toast'); el.textContent = msg; el.className = 'toast show' + (isErr ? ' err' : '');
+  clearTimeout(toast._t); toast._t = setTimeout(() => { el.className = 'toast' + (isErr ? ' err' : ''); }, 2800);
+  if (tg && tg.HapticFeedback) { try { tg.HapticFeedback.notificationOccurred(isErr ? 'error' : 'success'); } catch (e) {} }
+  isErr ? SND.error() : SND.success();
+}
+function api(path, qs){
+  if (!initData) return Promise.reject(new Error('no_tg'));
+  return fetch(API_BASE_URL + path + '?init_data=' + encodeURIComponent(initData) + (qs || '')).then(r => r.json());
+}
+function post(path, body){
+  if (!initData) return Promise.reject(new Error('no_tg'));
+  return fetch(API_BASE_URL + path, { method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(Object.assign({ init_data: initData }, body || {})) }).then(r => r.json());
+}
+function openLink(url){ if (tg && tg.openTelegramLink && /^https:\/\/t\.me\//.test(url)) tg.openTelegramLink(url); else window.open(url, '_blank'); }
+function botLink(param){ return 'https://t.me/' + BOT_USERNAME + (param ? '?start=' + param : ''); }
+function needTg(el){ el.innerHTML = '<div class="empty">' + esc(t('needTg')) + '</div>'; }
+function offline(el){ el.innerHTML = '<div class="empty">' + esc(t('netErr')) + '</div>'; }
+
+// 🎉 konfeti (oltin va zumrad)
+function fx(){
+  SND.coin();
+  if (REDUCED) return;
+  const cv = $('fx'), c = cv.getContext('2d');
+  cv.width = window.innerWidth; cv.height = window.innerHeight;
+  const cols = ['#f0d27a', '#d6ae3a', '#3fd08a', '#1f9e6a', '#ffffff'];
+  const ps = Array.from({ length: 100 }, () => ({ x: cv.width / 2 + (Math.random() - .5) * 90, y: cv.height * .62, vx: (Math.random() - .5) * 10, vy: -Math.random() * 13 - 4,
+    s: Math.random() * 6 + 3, r: Math.random() * 6, vr: (Math.random() - .5) * .4, c: cols[(Math.random() * cols.length) | 0] }));
+  const t0 = performance.now();
+  (function frame(now){
+    const k = (now - t0) / 1600; c.clearRect(0, 0, cv.width, cv.height); if (k >= 1) return;
+    ps.forEach(p => { p.vy += .36; p.x += p.vx; p.y += p.vy; p.r += p.vr; c.save(); c.globalAlpha = 1 - k; c.translate(p.x, p.y); c.rotate(p.r); c.fillStyle = p.c; c.fillRect(-p.s / 2, -p.s / 4, p.s, p.s / 2); c.restore(); });
+    requestAnimationFrame(frame);
+  })(t0);
+}
+// 🔢 raqamlar "sanab" chiqadi
+function setNum(el, to){
+  to = Number(to) || 0;
+  const from = parseInt((el.textContent || '0').replace(/\D/g, ''), 10) || 0;
+  if (REDUCED || from === to) { el.textContent = fmt(to); return; }
+  const t0 = performance.now(), dur = 700;
+  (function step(now){ const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3); el.textContent = fmt(Math.round(from + (to - from) * e)); if (k < 1) requestAnimationFrame(step); })(t0);
+}
+
+// ---------------------------------------------------------------- til (i18n)
+const I18N = {
+uz: { loading:"Yuklanmoqda...", needTg:"Bu bo'lim faqat Telegram ichida ochilganda ishlaydi.", netErr:"Yuklab bo'lmadi — internetni tekshiring.",
+ navHome:"Asosiy", navRoles:"Rollar", navShop:"Do'kon", navTransfer:"O'tkazma", navMenu:"Menyu",
+ roles:"Rollar", rolesSub:"Barcha rollar va ularning qobiliyatlari", searchRole:"Rol nomini qidirish...",
+ transfer:"O'tkazma", transferSub:"Dollar, olmos yoki inventar buyumini boshqa foydalanuvchiga o'tkazing", toWhom:"Kimga:", what:"Nima:", item:"Buyum:", amount:"Miqdor:", send:"O'tkazish",
+ transferHint:"O'tkazma qaytarilmaydi. Oluvchi botga kamida bir marta /start yozgan bo'lishi kerak.",
+ phUsername:"Foydalanuvchi @username", phId:"Telegram ID (raqam)", paramNote:"O'tkazma juftingizga (paramingizga) yuboriladi", noItems:"Sizda o'tkaziladigan buyum yo'q.",
+ menu:"Menyu", menuSub:"Barcha bo'limlar shu yerda", loveTitle:"Sevgi galaktikasi", loveSub:"Juft top · Taqdir · Bashorat", tGal:"Galaktika", tFate:"Taqdir", tFore:"Taqdir bashorati",
+ freeStars:"bo'sh yulduz", pairBtn:"🎲 Tasodifiy para top", pairHint:"Tasodifiy bo'ydoq o'yinchiga so'rov yuboriladi. U 10 daqiqa ichida qabul qilsa, ikkingiz juft bo'lasiz. So'rov botga ham keladi.",
+ fateSub:"Taqdiringni top — mahringizni qo'ying yoki sherik tanlang", tFind:"Kashf et", tMine:"Mening kartam",
+ hero:"Mening geroyim", heroSub:"Geroy tanlang va kuchaytiring", clan:"Klan", top:"Reyting", skins:"Kosmetika", skinsSub:"Ramka, animatsiya va skinlar",
+ quests:"Vazifalar", questsSub:"Kunlik va haftalik topshiriqlar", history:"Tarix", historySub:"So'nggi natijalaringiz", news:"Yangiliklar",
+ premium:"Premium guruhlar", premiumSub:"Yopiq guruhlarga kirish", premiumHint:"To'lovdan keyin sizga bir martalik taklif havolasi beriladi (24 soat amal qiladi).",
+ help:"Yordam", settings:"Sozlamalar", theme:"Mavzu", language:"Til", langHint:"Til faqat Mini ilova interfeysiga ta'sir qiladi. Botning tilini botda /lang orqali o'zgartirasiz.",
+ play:"O'yin", playText:"Asosiy o'yin guruhda /NewGame orqali boshlanadi. Botni guruhingizga qo'shing va admin qiling.", addGroup:"Guruhga qo'shish",
+ chest:"Sirli sandiq va omad o'yinlari", chestText:"Sandiq va omad g'ildiragi botning o'zida: /sandiq, /gildirak.", openBot:"Botni ochish", typeMsg:"Xabar yozing...",
+ helloSupport:"🆘 Savolingiz bormi? Shu yerga yozing — operator sizga o'z tilingizda javob beradi.",
+ gamesTotal:"JAMI O'YINLAR", wins:"G'ALABALAR", losses:"MAG'LUBIYATLAR", winRate:"G'ALABA FOIZI", winRateT:"G'alaba foizi", levelT:"-daraja",
+ serverT:"Server holati", activeGames:"Faol o'yinlar", usersT:"Foydalanuvchilar", vipT:"VIP maqom", vipName:"ELITE — {d} kunlik", vipDesc:"Maxsus imkoniyatlar va emoji uchun ELITE oling",
+ vipActive:"👑 ELITE faol — {d} kun qoldi", via:"orqali", giftT:"Do'stga VIP sovg'a qilish", days:"kun", friendPh:"Do'stingizning @username", friendId:"Do'stingizning Telegram ID",
+ botsT:"Bizning botlar", botsSub:"Botlar va ownerlar", teamT:"Jamoamiz", contactUs:"Biz bilan bog'lanish", write:"Yozish", projects:"loyiha",
+ dailyT:"Kunlik mukofot", dailyDesc:"Har kuni kirib anjom oling — 7, 14, 21 va 30-kunlarda qimmatroq mukofot!", claim:"Mukofotni olish", claimedT:"Ertaga qayting",
+ ownT:"Nimalarga egasiz", noVip:"VIP yo'q", hasVip:"ELITE faol", newRank:"Yangi",
+ shopT:"Qurol-yarog' do'koni", shopSub:"Balansingizga himoya va buyumlar xarid qiling", diamondShop:"Olmos do'koni", coinShop:"Hunter Coin do'koni", buy:"Xarid qilish",
+ packsT:"Pul va Olmos xarid qilish", packsSub:"Telegram Stars orqali to'g'ridan-to'g'ri xarid qiling", diamondW:"Olmos", dollarW:"Dollar", custom:"Ixtiyoriy miqdor",
+ owned:"Sizda: {n}", cancel:"Bekor qilish", confirmT:"Tasdiqlang", buyAsk:"«{n}» ni {p} ga sotib olasizmi?", ok:"OK", yes:"Ha", no:"Yo'q",
+ hunterMafia:"Hunter Mafia", elite:"ELITE", rank:"Daraja", paid:"✅ To'lov qabul qilindi — balans yangilanmoqda...",
+ hcT:"Hunter Coin bozori", hcSub:"Kurs vaqt bilan biroz tebranib turadi. Faqat 💎 yoki ⭐ bilan sotib olinadi.", hcRate:"Joriy kurs", hcQty:"Necha 🪙 sotib olasiz?", hcBuyD:"{c} 💎 bilan", hcBuyS:"{s} ⭐ bilan", hcRange:"Oraliq",
+ eliteDiscountT:"ELITE ga {p}% chegirma!", eliteFeedLine:"bo'ldi", cmpBtn:"ELITE nima beradi?", cmpTitle:"ELITE imkoniyatlari", cmpFeature:"Imkoniyat", cmpFree:"Oddiy",
+ cmpPreviewSub:"ELITE bilan profilingiz shunday porlaydi", cmpDaily:"Kattaroq kunlik bonus", cmpEmoji:"Maxsus emoji va belgi", cmpBadge:"👑 oltin ramka", cmpAi:"Theron AI bilan chuqur savollar",
+ cmpGift:"Do'stga sovg'a qilish", cmpFrame:"Profil ramkasi va rangi", cmpCta:"Tariflarni ko'rish",
+ ownerT:"Boshqaruv paneli", ownerSub:"Botni kod yozmasdan shu yerdan boshqaring", ownStatUsers:"Foydalanuvchi", ownStatGames:"Faol o'yin", ownStatElite:"ELITE egalari", ownStatGroups:"Guruhlar",
+ ownDiscT:"👑 ELITE chegirmasi", ownDiscSub:"Vaqtinchalik chegirma qo'ying — bu coin/olmos bermaydi, faqat narxni pasaytiradi", ownDiscPct:"Foiz (%)", ownDiscMin:"Daqiqa", ownDiscBtn:"Yoqish", ownDiscOff:"O'chirish",
+ mTile:{ love:["Sevgi galaktikasi","Juft toping yoki taqdiringizni soting"], hero:["Mening geroyim","Geroy tanlang va kuchaytiring"], skins:["Kosmetika","Ramka, animatsiya, skin"], clan:["Klan","Do'stlar bilan jamoa"],
+   top:["Reyting","Eng kuchli o'yinchilar"], quests:["Vazifalar","Kunlik va haftalik"], history:["Tarix","So'nggi natijalar"], news:["Yangiliklar","E'lonlar va yangiliklar"],
+   premium:["Premium guruhlar","Yopiq guruhlarga kirish"], play:["O'yin","Guruhga qo'shilish"], team:["Bizning botlar","Jamoa va loyihalar"], help:["Yordam","Operatorga yozing"], settings:["Sozlamalar","Mavzu va til"] } },
+ru: { loading:"Загрузка...", needTg:"Этот раздел работает только внутри Telegram.", netErr:"Не удалось загрузить — проверьте интернет.",
+ navHome:"Главная", navRoles:"Роли", navShop:"Магазин", navTransfer:"Перевод", navMenu:"Меню",
+ roles:"Роли", rolesSub:"Все роли и их способности", searchRole:"Поиск роли...",
+ transfer:"Перевод", transferSub:"Переведите доллары, алмазы или предметы другому игроку", toWhom:"Кому:", what:"Что:", item:"Предмет:", amount:"Количество:", send:"Перевести",
+ transferHint:"Перевод нельзя отменить. Получатель должен хотя бы раз написать боту /start.",
+ phUsername:"@username пользователя", phId:"Telegram ID (число)", paramNote:"Перевод будет отправлен вашей паре", noItems:"У вас нет предметов для перевода.",
+ menu:"Меню", menuSub:"Все разделы здесь", loveTitle:"Галактика любви", loveSub:"Пара · Судьба · Предсказание", tGal:"Галактика", tFate:"Судьба", tFore:"Предсказание судьбы",
+ freeStars:"свободных звёзд", pairBtn:"🎲 Случайная пара", pairHint:"Случайному свободному игроку отправляется запрос. Если он примет в течение 10 минут — вы пара. Запрос придёт и в бота.",
+ fateSub:"Найди свою судьбу — выставь свою карточку или выбери партнёра", tFind:"Открыть", tMine:"Моя карточка",
+ hero:"Мой герой", heroSub:"Выберите героя и усиливайте", clan:"Клан", top:"Рейтинг", skins:"Косметика", skinsSub:"Рамки, анимации и скины",
+ quests:"Задания", questsSub:"Ежедневные и еженедельные", history:"История", historySub:"Ваши последние результаты", news:"Новости",
+ premium:"Премиум-группы", premiumSub:"Доступ в закрытые группы", premiumHint:"После оплаты вы получите одноразовую ссылку-приглашение (действует 24 часа).",
+ help:"Помощь", settings:"Настройки", theme:"Тема", language:"Язык", langHint:"Язык влияет только на интерфейс мини-приложения. Язык бота меняется в боте командой /lang.",
+ play:"Игра", playText:"Основная игра начинается в группе командой /NewGame. Добавьте бота в группу и сделайте админом.", addGroup:"Добавить в группу",
+ chest:"Тайный сундук и игры удачи", chestText:"Сундук и колесо удачи — в самом боте: /sandiq, /gildirak.", openBot:"Открыть бота", typeMsg:"Напишите сообщение...",
+ helloSupport:"🆘 Есть вопрос? Напишите сюда — оператор ответит вам на вашем языке.",
+ gamesTotal:"ВСЕГО ИГР", wins:"ПОБЕДЫ", losses:"ПОРАЖЕНИЯ", winRate:"ПРОЦЕНТ ПОБЕД", winRateT:"Процент побед", levelT:"-й уровень",
+ serverT:"Состояние сервера", activeGames:"Активные игры", usersT:"Пользователи", vipT:"VIP-статус", vipName:"ELITE — {d} дн.", vipDesc:"Получите ELITE для особых возможностей и эмодзи",
+ vipActive:"👑 ELITE активен — осталось {d} дн.", via:"за", giftT:"Подарить VIP другу", days:"дн.", friendPh:"@username друга", friendId:"Telegram ID друга",
+ botsT:"Наши боты", botsSub:"Боты и владельцы", teamT:"Наша команда", contactUs:"Связаться с нами", write:"Написать", projects:"проектов",
+ dailyT:"Ежедневная награда", dailyDesc:"Заходите каждый день — на 7, 14, 21 и 30-й день награда больше!", claim:"Получить награду", claimedT:"Возвращайтесь завтра",
+ ownT:"Что у вас есть", noVip:"Нет VIP", hasVip:"ELITE активен", newRank:"Новичок",
+ shopT:"Арсенал", shopSub:"Покупайте защиту и предметы за баланс", diamondShop:"Магазин алмазов", coinShop:"Магазин Hunter Coin", buy:"Купить",
+ packsT:"Покупка денег и алмазов", packsSub:"Покупайте напрямую через Telegram Stars", diamondW:"Алмазы", dollarW:"Доллары", custom:"Своё количество",
+ owned:"У вас: {n}", cancel:"Отмена", confirmT:"Подтвердите", buyAsk:"Купить «{n}» за {p}?", ok:"OK", yes:"Да", no:"Нет",
+ hunterMafia:"Hunter Mafia", elite:"ELITE", rank:"Уровень", paid:"✅ Оплата принята — баланс обновляется...",
+ hcT:"Рынок Hunter Coin", hcSub:"Курс немного колеблется со временем. Покупка только за 💎 или ⭐.", hcRate:"Текущий курс", hcQty:"Сколько 🪙 купить?", hcBuyD:"За {c} 💎", hcBuyS:"За {s} ⭐", hcRange:"Диапазон",
+ eliteDiscountT:"Скидка {p}% на ELITE!", eliteFeedLine:"получил(а) ELITE", cmpBtn:"Что даёт ELITE?", cmpTitle:"Возможности ELITE", cmpFeature:"Возможность", cmpFree:"Обычный",
+ cmpPreviewSub:"Так будет выглядеть ваш профиль с ELITE", cmpDaily:"Больше ежедневный бонус", cmpEmoji:"Особые эмодзи и значок", cmpBadge:"👑 золотая рамка", cmpAi:"Глубокие вопросы Theron AI",
+ cmpGift:"Подарить другу", cmpFrame:"Рамка и цвет профиля", cmpCta:"Смотреть тарифы",
+ ownerT:"Панель управления", ownerSub:"Управляйте ботом отсюда — без кода", ownStatUsers:"Пользователи", ownStatGames:"Активные игры", ownStatElite:"ELITE-пользователи", ownStatGroups:"Группы",
+ ownDiscT:"👑 Скидка на ELITE", ownDiscSub:"Временная скидка — не даёт монет/алмазов, только снижает цену", ownDiscPct:"Процент (%)", ownDiscMin:"Минуты", ownDiscBtn:"Включить", ownDiscOff:"Выключить",
+ mTile:{ love:["Галактика любви","Найдите пару или продайте судьбу"], hero:["Мой герой","Выберите и усиливайте"], skins:["Косметика","Рамки, анимации, скины"], clan:["Клан","Команда с друзьями"],
+   top:["Рейтинг","Сильнейшие игроки"], quests:["Задания","Ежедневные и еженедельные"], history:["История","Последние результаты"], news:["Новости","Объявления"],
+   premium:["Премиум-группы","Закрытые группы"], play:["Игра","Вступить в группу"], team:["Наши боты","Команда и проекты"], help:["Помощь","Написать оператору"], settings:["Настройки","Тема и язык"] } },
+en: { loading:"Loading...", needTg:"This section only works inside Telegram.", netErr:"Couldn't load — check your connection.",
+ navHome:"Home", navRoles:"Roles", navShop:"Shop", navTransfer:"Transfer", navMenu:"Menu",
+ roles:"Roles", rolesSub:"All roles and their abilities", searchRole:"Search role...",
+ transfer:"Transfer", transferSub:"Send dollars, diamonds or items to another player", toWhom:"To:", what:"What:", item:"Item:", amount:"Amount:", send:"Send",
+ transferHint:"Transfers can't be undone. The recipient must have pressed /start in the bot at least once.",
+ phUsername:"User @username", phId:"Telegram ID (number)", paramNote:"The transfer goes to your partner", noItems:"You have no items to transfer.",
+ menu:"Menu", menuSub:"All sections are here", loveTitle:"Love Galaxy", loveSub:"Match · Fate · Forecast", tGal:"Galaxy", tFate:"Fate", tFore:"Fate forecast",
+ freeStars:"free stars", pairBtn:"🎲 Random match", pairHint:"A request is sent to a random single player. If they accept within 10 minutes, you become a couple. The request also arrives in the bot.",
+ fateSub:"Find your fate — list your card or pick a partner", tFind:"Discover", tMine:"My card",
+ hero:"My hero", heroSub:"Pick a hero and level it up", clan:"Clan", top:"Ranking", skins:"Cosmetics", skinsSub:"Frames, animations and skins",
+ quests:"Quests", questsSub:"Daily and weekly tasks", history:"History", historySub:"Your latest results", news:"News",
+ premium:"Premium groups", premiumSub:"Access to private groups", premiumHint:"After payment you'll get a one-time invite link (valid for 24 hours).",
+ help:"Support", settings:"Settings", theme:"Theme", language:"Language", langHint:"Language only affects the Mini App interface. Change the bot's language in the bot with /lang.",
+ play:"Play", playText:"The main game starts in a group with /NewGame. Add the bot to your group and make it admin.", addGroup:"Add to group",
+ chest:"Mystery chest & luck games", chestText:"The chest and the wheel of luck live in the bot: /sandiq, /gildirak.", openBot:"Open bot", typeMsg:"Type a message...",
+ helloSupport:"🆘 Have a question? Write here — the operator will reply in your language.",
+ gamesTotal:"TOTAL GAMES", wins:"WINS", losses:"LOSSES", winRate:"WIN RATE", winRateT:"Win rate", levelT:" level",
+ serverT:"Server status", activeGames:"Active games", usersT:"Users", vipT:"VIP status", vipName:"ELITE — {d} days", vipDesc:"Get ELITE for special perks and emoji",
+ vipActive:"👑 ELITE active — {d} days left", via:"for", giftT:"Gift VIP to a friend", days:"days", friendPh:"Friend's @username", friendId:"Friend's Telegram ID",
+ botsT:"Our bots", botsSub:"Bots and owners", teamT:"Our team", contactUs:"Contact us", write:"Message", projects:"projects",
+ dailyT:"Daily reward", dailyDesc:"Come back every day — days 7, 14, 21 and 30 pay more!", claim:"Claim reward", claimedT:"Come back tomorrow",
+ ownT:"What you own", noVip:"No VIP", hasVip:"ELITE active", newRank:"Rookie",
+ shopT:"Armory", shopSub:"Buy protection and items with your balance", diamondShop:"Diamond shop", coinShop:"Hunter Coin shop", buy:"Buy",
+ packsT:"Buy money & diamonds", packsSub:"Buy directly with Telegram Stars", diamondW:"Diamonds", dollarW:"Dollars", custom:"Custom amount",
+ owned:"You own: {n}", cancel:"Cancel", confirmT:"Confirm", buyAsk:"Buy “{n}” for {p}?", ok:"OK", yes:"Yes", no:"No",
+ hunterMafia:"Hunter Mafia", elite:"ELITE", rank:"Level", paid:"✅ Payment received — updating your balance...",
+ hcT:"Hunter Coin market", hcSub:"The rate drifts a little over time. Buy only with 💎 or ⭐.", hcRate:"Current rate", hcQty:"How many 🪙 to buy?", hcBuyD:"For {c} 💎", hcBuyS:"For {s} ⭐", hcRange:"Range",
+ eliteDiscountT:"{p}% off ELITE!", eliteFeedLine:"just went ELITE", cmpBtn:"What does ELITE give?", cmpTitle:"ELITE perks", cmpFeature:"Feature", cmpFree:"Free",
+ cmpPreviewSub:"This is how your profile glows with ELITE", cmpDaily:"Bigger daily bonus", cmpEmoji:"Exclusive emoji and badge", cmpBadge:"👑 golden frame", cmpAi:"Deep questions to Theron AI",
+ cmpGift:"Gift to a friend", cmpFrame:"Profile frame and color", cmpCta:"See plans",
+ ownerT:"Owner panel", ownerSub:"Run the bot from here — no code needed", ownStatUsers:"Users", ownStatGames:"Active games", ownStatElite:"ELITE holders", ownStatGroups:"Groups",
+ ownDiscT:"👑 ELITE discount", ownDiscSub:"A temporary discount — grants no coins/diamonds, only lowers the price", ownDiscPct:"Percent (%)", ownDiscMin:"Minutes", ownDiscBtn:"Enable", ownDiscOff:"Disable",
+ mTile:{ love:["Love Galaxy","Find a match or sell your fate"], hero:["My hero","Pick and upgrade"], skins:["Cosmetics","Frames, animations, skins"], clan:["Clan","Team up with friends"],
+   top:["Ranking","Strongest players"], quests:["Quests","Daily and weekly"], history:["History","Latest results"], news:["News","Announcements"],
+   premium:["Premium groups","Private group access"], play:["Play","Join a group"], team:["Our bots","Team and projects"], help:["Support","Message the operator"], settings:["Settings","Theme and language"] } },
+};
+const LANGS = [['uz','🇺🇿','O\'zbekcha'], ['ru','🇷🇺','Русский'], ['en','🇺🇸','English']];
+let LANG = lsGet('hm_lang', ''); if (!I18N[LANG]) { const c = (TGU && TGU.language_code || 'uz').slice(0, 2); LANG = I18N[c] ? c : 'uz'; }
+function t(k, vars){
+  let s = (I18N[LANG] && I18N[LANG][k] != null) ? I18N[LANG][k] : (I18N.uz[k] != null ? I18N.uz[k] : k);
+  if (vars && typeof s === 'string') Object.keys(vars).forEach(x => { s = s.split('{' + x + '}').join(vars[x]); });
+  return s;
+}
+function applyI18n(){
+  document.documentElement.lang = LANG;
+  document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
+  document.querySelectorAll('[data-ph]').forEach(el => { el.placeholder = t(el.dataset.ph); });
+}
+
+// ---------------------------------------------------------------- mavzu
+const THEMES = [['zumrad','Zumrad','#1f9e6a'], ['qonli','Qonli','#a83232'], ['tun','Tun','#3f78d4'], ['binafsha','Binafsha','#8a5ce0'], ['platina','Platina','#aab3c2'], ['yoqut','Yoqut','#e0466c'],
+  ['feruza','Feruza','#22b8a8'], ['kuz','Kuz','#d9741a'], ['vodiy','Vodiy','#8aac2c'], ['muz','Muz','#54b8d6'], ['onyx','Onyx','#d4a20f'], ['shafaq','Shafaq','#f0704a']];
+let THEME = lsGet('hm_theme', 'zumrad');
+function applyTheme(name){
+  THEME = name;
+  if (name === 'zumrad') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', name);
+  lsSet('hm_theme', name);
+  document.querySelectorAll('.tg button').forEach(b => b.classList.toggle('on', b.dataset.th === name));
+}
+function themeGridHtml(){ return THEMES.map(x => `<button data-act="theme" data-th="${x[0]}" class="${x[0] === THEME ? 'on' : ''}"><i style="background:radial-gradient(circle at 30% 30%, ${x[2]}, #0006 140%), ${x[2]}"></i>${x[1]}</button>`).join(''); }
+
+// ---------------------------------------------------------------- oyna / panel
+function closeOv(){ const ov = $('ov'); ov.className = 'ov'; ov.innerHTML = ''; }
+function openSheet(title, html){
+  const ov = $('ov'); ov.className = 'ov show';
+  ov.innerHTML = `<div class="sheet"><div class="grab"></div><h3><span>${title}</span><button class="x" data-act="closeov">✕</button></h3>${html}</div>`;
+  ov.onclick = e => { if (e.target === ov) closeOv(); };
+}
+function openDialog(html){
+  const ov = $('ov'); ov.className = 'ov show'; ov.innerHTML = `<div class="dlg">${html}</div>`;
+  ov.onclick = e => { if (e.target === ov) closeOv(); };
+}
+function confirmBox(msg, yes){
+  openDialog(`<h4>${esc(t('confirmT'))}</h4><p>${esc(msg)}</p><div class="two"><button class="ok" style="color:var(--text-2)" data-act="closeov">${esc(t('cancel'))}</button><button class="ok" id="cfYes">${esc(t('yes'))}</button></div>`);
+  $('cfYes').onclick = () => { closeOv(); yes(); };
+}
+function popMenu(anchor, html){
+  const ov = $('ov'); ov.className = 'ov show'; ov.innerHTML = `<div class="pop" id="popBox">${html}</div>`;
+  const r = anchor.getBoundingClientRect(), box = $('popBox');
+  box.style.top = Math.min(window.innerHeight - 200, r.bottom + 8) + 'px'; box.style.left = Math.max(10, Math.min(window.innerWidth - 230, r.left - 60)) + 'px';
+  ov.onclick = e => { if (e.target === ov) closeOv(); };
+}
+
+// ---------------------------------------------------------------- holat
+const S = { home: null, shop: null, roles: null, page: 'home', stack: [], daily: null, newsUnread: false };
+const MAIN = ['home', 'roles', 'shop', 'transfer', 'menu'];
+function bal(b){
+  if (!b) return;
+  if (S.home) { S.home.dollar = b.dollar; S.home.diamond = b.diamond; S.home.coin = b.coin; }
+  document.querySelectorAll('[data-bal]').forEach(el => setNum(el, b[el.dataset.bal]));
+}
+function refreshHome(cb){ return api('/api/home').then(h => { S.home = h; renderHeaders(); if (S.page === 'home') renderHome(); if (cb) cb(); }).catch(() => {}); }
+function afterPayment(){ toast(t('paid')); fx(); [1400, 4200].forEach(ms => setTimeout(() => refreshHome(), ms)); }
+function payStars(kind, extra){
+  post('/api/stars_invoice', Object.assign({ kind }, extra || {})).then(r => {
+    if (!r.ok) { toast(r.message || r.error || 'Xatolik', true); return; }
+    if (tg && tg.openInvoice) tg.openInvoice(r.link, status => { if (status === 'paid') afterPayment(); });
+    else window.open(r.link, '_blank');
+  }).catch(() => toast(t('netErr'), true));
+}
+
+// ---------------------------------------------------------------- navigatsiya
+const ENTER = {};
+function go(name, push){
+  if (!$('p-' + name)) return;
+  if (push !== false && S.page !== name) S.stack.push(S.page);
+  document.querySelectorAll('.page').forEach(p => p.classList.toggle('active', p.id === 'p-' + name));
+  S.page = name;
+  const navOn = MAIN.includes(name) ? name : 'menu';
+  document.querySelectorAll('#nav button').forEach(b => b.classList.toggle('on', b.dataset.go === navOn));
+  $('fab').style.display = (name === 'help') ? 'none' : 'flex';
+  stopBg(); window.scrollTo(0, 0);
+  if (tg && tg.BackButton) { try { S.stack.length ? tg.BackButton.show() : tg.BackButton.hide(); } catch (e) {} }
+  if (ENTER[name]) ENTER[name]();
+}
+function back(){ const p = S.stack.pop(); go(p || 'home', false); }
+function goMain(name){ S.stack = []; go(name, false); }
+if (tg && tg.BackButton) { try { tg.BackButton.onClick(() => back()); } catch (e) {} }
+
+// ---------------------------------------------------------------- profil kartasi
+function rankLabel(h){ return h.rank === 'Yangi' ? t('newRank') : h.rank; }
+function profileCard(h, compact){
+  const photo = TGU && TGU.photo_url ? `background-image:url('${esc(TGU.photo_url)}')` : '';
+  const initial = esc((h.name || '?').trim().charAt(0).toUpperCase());
+  const handle = h.username ? '@' + esc(h.username) : (TGU && TGU.username ? '@' + esc(TGU.username) : 'ID: ' + h.uid);
+  return `<div class="card gold pcard"><div class="pc-top"><div class="avatar"><div class="in" style="${photo}">${photo ? '' : initial}</div></div>
+    <div style="min-width:0"><div class="pc-name">${esc(h.name)}</div><div class="pc-handle">${handle}</div><div class="rank">⭐ ${esc(rankLabel(h))}</div></div></div>
+    <div class="chips"><span class="chip"><span class="e">💰</span><b data-bal="dollar">${fmt(h.dollar)}</b></span><span class="chip"><span class="e">💎</span><b data-bal="diamond">${fmt(h.diamond)}</b></span>
+    <span class="chip"><span class="e">🪙</span><b data-bal="coin">${fmt(h.coin)}</b></span>
+    <button class="chip btn" data-act="themesheet" aria-label="mavzu">🎨</button><button class="chip btn" data-act="langpop" aria-label="til">🌐</button></div></div>`;
+}
+function renderHeaders(){
+  if (!S.home) return;
+  if ($('shopHead')) $('shopHead').innerHTML = profileCard(S.home);
+  if ($('trHead')) $('trHead').innerHTML = profileCard(S.home);
+}
+
+// ============================================================ ASOSIY SAHIFA
+const DEMO = { uid: 0, name: 'Hunter', username: null, rank: 'Yangi', dollar: 0, diamond: 0, coin: 0, games: 0, wins: 0, losses: 0, winrate: 0, level: 1, xp_in_level: 0, xp_per_level: 500,
+  server: { active_games: 0, users: 0 },
+  vip: { active: false, days_left: 0, plans: [{ days: 7, diamond: 40, stars: 100 }, { days: 15, diamond: 70, stars: 180 }, { days: 30, diamond: 130, stars: 320 }], discount_percent: 0, discount_until: 0 },
+  items: [], partner: null, is_owner: false, elite_feed: [], elite_count: 0 };
+S.gift = { to: 'username', days: 0 };
+function statHtml(icon, n, key){ return `<div class="stat"><div class="ic">${icon}</div><div class="n">${fmt(n)}</div><div class="l">${esc(t(key))}</div></div>`; }
+
+// ---- 👑 ELITE: chegirma banner (countdown) — narx OWNER tomonidan boshqariladi, bepul emas
+S.eliteCd = 0;
+function fmtCountdown(sec){ sec = Math.max(0, sec | 0); const h1 = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), s = sec % 60;
+  return (h1 ? h1 + ':' + String(m).padStart(2, '0') : m) + ':' + String(s).padStart(2, '0'); }
+function eliteBannerHtml(h){
+  const pct = h.vip.discount_percent, until = h.vip.discount_until;
+  if (!pct || !until) return '';
+  const left = until - Math.floor(Date.now() / 1000);
+  if (left <= 0) return '';
+  return `<div class="eliteBanner"><b>🔥 ${esc(t('eliteDiscountT', { p: pct }))}</b><div class="cd" id="eliteCd">⏳ ${fmtCountdown(left)}</div></div>`;
+}
+function startEliteCountdown(){
+  clearInterval(S.eliteCd);
+  const h = S.home; if (!h || !h.vip.discount_until) return;
+  S.eliteCd = setInterval(() => {
+    const el = $('eliteCd'); if (!el) { clearInterval(S.eliteCd); return; }
+    const left = h.vip.discount_until - Math.floor(Date.now() / 1000);
+    if (left <= 0) { clearInterval(S.eliteCd); if (S.page === 'home') renderHome(); return; }
+    el.textContent = '⏳ ' + fmtCountdown(left);
+  }, 1000);
+}
+// ---- 👑 ELITE: ijtimoiy-isbot lentasi (faqat ko'rsatadi, hech narsa bermaydi)
+function eliteFeedHtml(h){
+  const feed = h.elite_feed || []; if (!feed.length) return '';
+  return `<div class="eliteFeed" id="eliteFeed">${feed.slice(0, 6).map((it, i) => `<div class="row" style="animation-delay:${i * 3.6}s;">👑 <b>${esc(it.name)}</b> ${esc(t('eliteFeedLine'))} · ${esc(it.ago)}</div>`).join('')}</div>`;
+}
+// ---- 👑 ELITE: taqqoslash oynasi (sof vizual — sotib olishga qiziqtiradi)
+function openEliteCompare(){
+  const h = S.home; const nm = (h && h.name) || 'Hunter';
+  const rows = [
+    [t('cmpDaily'), false, true], [t('cmpEmoji'), false, true], [t('cmpBadge'), false, true],
+    [t('cmpAi'), true, true], [t('cmpGift'), false, true], [t('cmpFrame'), false, true],
+  ];
+  const html = `<div class="elitePreview"><div class="av"><i>${esc((nm || '?').charAt(0).toUpperCase())}</i></div>
+      <div><div class="nm">${esc(nm)} <span style="color:var(--gold-soft);">👑</span></div><div class="sub">${esc(t('cmpPreviewSub'))}</div></div></div>
+    <table class="cmpT"><tr><th>${esc(t('cmpFeature'))}</th><th>${esc(t('cmpFree'))}</th><th>👑 ELITE</th></tr>
+      ${rows.map(r => `<tr><td>${esc(r[0])}</td><td class="${r[1] ? 'yes' : 'no'}">${r[1] ? '✓' : '—'}</td><td class="yes">✓</td></tr>`).join('')}
+    </table>
+    <button class="btn-gold full" style="margin-top:14px;" data-act="closeov">${esc(t('cmpCta'))}</button>`;
+  openSheet('👑 ' + esc(t('cmpTitle')), html);
+}
+function vipHtml(h){
+  const plans = h.vip.plans || [];
+  const cards = plans.map((p, i) => { const disc = p.diamond_original && p.diamond_original !== p.diamond;
+    return `<div class="vt ${i === Math.min(2, plans.length - 1) ? 'best' : ''}"><div class="t">💎 ${esc(t('vipName', { d: p.days }))}${i === 2 ? '<em>TOP</em>' : ''}</div><div class="d">${esc(t('vipDesc'))}</div>
+    <div class="pay"><button class="d" data-act="elite" data-days="${p.days}" data-how="d">${disc ? `<span class="pr-old">${p.diamond_original}💎</span>` : ''}💎 ${p.diamond} ${esc(t('via'))}</button><button class="g" data-act="elite" data-days="${p.days}" data-how="s">⭐ ${p.stars} ${esc(t('via'))}</button></div></div>`; }).join('');
+  const status = h.vip.active ? `<div class="vt best" style="text-align:center;font-weight:700;color:var(--gold-soft);">${esc(t('vipActive', { d: h.vip.days_left }))}</div>` : '';
+  return `<div class="card"><div class="card-t"><span class="ic">⚡</span>${esc(t('vipT'))}</div>
+    ${eliteBannerHtml(h)}${eliteFeedHtml(h)}${status}${cards}
+    <button class="btn-ghost full" style="margin-top:4px;" data-act="elitecompare">👑 ${esc(t('cmpBtn'))}</button>
+    <div class="lab" style="margin-top:14px;">${esc(t('giftT'))}</div>
+    <div class="seg" id="gTo"><button data-act="gto" data-v="username" class="on">@ Username</button><button data-act="gto" data-v="id">🆔 Telegram ID</button><button data-act="gto" data-v="param">💞 Param</button></div>
+    <input class="field" id="gTarget" placeholder="${esc(t('friendPh'))}" autocomplete="off" autocapitalize="off">
+    <div class="seg" id="gDays">${plans.map((p, i) => `<button data-act="gdays" data-v="${p.days}" class="${i === 0 ? 'on' : ''}">${p.days} ${esc(t('days'))}</button>`).join('')}</div>
+    <div class="pay" id="gPay"></div></div>`;
+}
+function renderGiftPay(){
+  const h = S.home; if (!h || !$('gPay')) return;
+  const days = S.gift.days || (h.vip.plans[0] && h.vip.plans[0].days);
+  const p = h.vip.plans.find(x => x.days === Number(days)) || h.vip.plans[0]; if (!p) return;
+  $('gPay').innerHTML = `<button class="g" data-act="gift" data-how="d">💎 ${p.diamond} ${esc(t('via'))}</button><button class="g" data-act="gift" data-how="s">⭐ ${p.stars} ${esc(t('via'))}</button>`;
+}
+function renderHome(){
+  const h = S.home; if (!h) return;
+  const items = (h.items || []).map(i => `<span class="ich ${i.qty > 0 ? 'has' : ''}" title="${esc(i.name)}">${esc(i.icon)} ${fmt(i.qty)}</span>`).join('');
+  $('homeBox').innerHTML = profileCard(h) +
+    `<div class="stats">${statHtml('🎮', h.games, 'gamesTotal')}${statHtml('🏆', h.wins, 'wins')}${statHtml('💀', h.losses, 'losses')}${statHtml('％', h.winrate, 'winRate').replace('</div><div class="l">', '%</div><div class="l">')}</div>
+    <div class="card pbar"><div class="top"><span>${esc(t('winRateT'))}</span><b>${h.winrate}%</b></div><div class="track"><i id="bWin"></i></div></div>
+    <div class="card pbar"><div class="top"><span>${h.level}${esc(t('levelT'))}</span><b>${fmt(h.xp_in_level)}/${fmt(h.xp_per_level)} XP</b></div><div class="track"><i id="bXp"></i></div></div>
+    <div class="card"><div class="card-t"><span class="ic">🖥</span>${esc(t('serverT'))}</div>
+      <div class="srv"><span class="dot"></span><span>${esc(t('activeGames'))}</span><span class="v">${fmt(h.server.active_games)}</span></div>
+      <div class="srv"><span>👥</span><span>${esc(t('usersT'))}</span><span class="v">${fmt(h.server.users)}</span></div></div>` +
+    vipHtml(h) +
+    `<button class="rowcard" data-act="team"><span class="ri">🤖</span><span><div class="rt">${esc(t('botsT'))}</div><div class="rd">${esc(t('botsSub'))}</div></span><span class="ch">›</span></button>
+    <div class="card gold"><div class="card-t"><span class="ic">🎁</span>${esc(t('dailyT'))}</div><div class="hint" style="text-align:left;margin:0 0 4px;font-size:13.5px;">${esc(t('dailyDesc'))}</div><div id="dailyBox"><div class="empty">${esc(t('loading'))}</div></div></div>
+    <div class="card"><div class="card-t"><span class="ic">💼</span>${esc(t('ownT'))}</div><div class="invg">${items}<span class="ich vip">👑 ${esc(h.vip.active ? t('hasVip') : t('noVip'))}</span></div></div>`;
+  renderGiftPay();
+  startEliteCountdown();
+  requestAnimationFrame(() => { const w = $('bWin'), x = $('bXp'); if (w) w.style.width = Math.min(100, h.winrate) + '%'; if (x) x.style.width = Math.min(100, Math.round(h.xp_in_level / h.xp_per_level * 100)) + '%'; });
+  if (initData) loadDaily();
+}
+ENTER.home = () => {
+  if (!initData) { S.home = S.home || DEMO; renderHome(); renderHeaders(); return; }
+  if (S.home) { renderHome(); renderHeaders(); }
+  api('/api/home').then(h => { S.home = h; renderHome(); renderHeaders(); }).catch(() => { if (!S.home) offline($('homeBox')); });
+};
+
+// ---- kunlik mukofot (7 ustunli taqvim)
+function loadDaily(){
+  api('/api/daily_bonus_status').then(d => { S.daily = d; renderDaily(); }).catch(() => { if ($('dailyBox')) offline($('dailyBox')); });
+}
+function renderDaily(){
+  const d = S.daily, box = $('dailyBox'); if (!d || !box) return;
+  const today = d.days.find(x => x.state === 'today');
+  const rewardTxt = today ? (today.diamond > 0 ? '+' + today.diamond + '💎' : '+' + fmt(today.dollar) + '💵') : '';
+  box.innerHTML = `<div class="cal7">${d.days.map(x => `<div class="cc ${x.state} ${x.diamond > 0 ? 'gem' : ''}"><span class="dn">${x.day}</span><span class="rw">${x.diamond > 0 ? x.diamond + '<small>💎</small>' : fmt(x.dollar) + '<small>💵</small>'}</span></div>`).join('')}</div>
+    <button class="btn-gold full ${d.claimed_today ? '' : 'shine'}" id="claimBtn" data-act="claim" ${d.claimed_today ? 'disabled' : ''}>${esc(d.claimed_today ? t('claimedT') : t('claim') + ' (' + rewardTxt + ')')}</button>`;
+}
+
+// ============================================================ ROLLAR
+const GROUP_TITLES = { mafia: { uz: 'Mafiya guruhi', ru: 'Мафия', en: 'Mafia' }, town: { uz: 'Tinch aholi guruhi', ru: 'Мирные жители', en: 'Town' },
+  solo: { uz: 'Yakkalar guruhi', ru: 'Одиночки', en: 'Solo' }, items: { uz: 'Anjomlar', ru: 'Предметы', en: 'Items' } };
+function renderRoles(){
+  const box = $('rolesBox'); if (!S.roles) return;
+  const q = ($('roleQ').value || '').trim().toLowerCase();
+  const html = S.roles.groups.map(g => {
+    const idx = g.roles.map((r, i) => i).filter(i => !q || g.roles[i].name.toLowerCase().includes(q));
+    if (!idx.length) return '';
+    const title = (GROUP_TITLES[g.key] && GROUP_TITLES[g.key][LANG]) || g.title;
+    return `<div class="sect"><span>${g.icon} ${esc(title)}</span></div><div class="rg">${idx.map(i => { const r = g.roles[i];
+      const elite = g.key === 'items' && (r.currency === 'coin' || (r.currency === 'diamond' && r.price >= 50));
+      return `<button class="rt2 ${g.key}" data-act="role" data-g="${g.key}" data-i="${i}">${elite ? '<span class="bd elite">ELITE</span>' : ''}<span class="em">${esc(r.emoji)}</span><span>${esc(r.name)}</span></button>`; }).join('')}</div>`;
+  }).join('');
+  box.innerHTML = html || `<div class="empty">—</div>`;
+}
+ENTER.roles = () => {
+  if (S.roles) { renderRoles(); return; }
+  if (!initData) { needTg($('rolesBox')); return; }
+  api('/api/roles').then(d => { S.roles = d; renderRoles(); }).catch(() => offline($('rolesBox')));
+};
+function symbol(cur){ return cur === 'dollar' ? '$' : (cur === 'diamond' ? '💎' : '🪙'); }
+function showRole(g, i){
+  const grp = S.roles && S.roles.groups.find(x => x.key === g); if (!grp) return; const r = grp.roles[i]; if (!r) return;
+  const extra = g === 'items' ? `\n\n${fmt(r.price)} ${symbol(r.currency)}` : '';
+  openDialog(`<h4>${esc(t('hunterMafia'))}</h4><div class="big">${esc(r.emoji)} ${esc(r.name)}</div><p>${esc(r.desc)}${esc(extra)}</p><button class="ok" data-act="closeov">${esc(t('ok'))}</button>`);
+}
+
+// ============================================================ DO'KON
+function shopCard(it){
+  return `<div class="sc ${it.elite ? 'elite' : ''}">${it.elite ? '<span class="bd elite">ELITE</span>' : ''}<div class="ic">${esc(it.emoji)}</div><div class="nm">${esc(it.name)}</div><div class="ds">${esc((it.desc || '').slice(0, 70))}</div>
+    <div class="pr">${fmt(it.price)} ${symbol(it.currency)}</div>${it.qty != null && it.qty > 0 ? `<div class="own">${esc(t('owned', { n: it.qty }))}</div>` : ''}
+    <button data-act="buyitem" data-cat="${it.cat}" data-key="${it.key}">🛒 ${esc(t('buy'))}</button></div>`;
+}
+function packHtml(kind, packs, custom){
+  const em = kind === 'diamond' ? '💎' : '💵';
+  return `<div class="pk">${packs.map(p => `<div class="pkc"><div class="a">${em} ${fmt(p[0])}</div><div class="s">⭐ ${p[1]}</div><button data-act="pack" data-kind="${kind}" data-qty="${p[0]}">${esc(t('buy'))}</button></div>`).join('')}
+    <div class="pkc"><div class="a" style="font-size:16px;">${em} ${esc(t('custom'))}</div><input class="field" id="cu-${kind}" type="number" min="${kind === 'diamond' ? 1 : 100}" inputmode="numeric" placeholder="${kind === 'diamond' ? '1+' : '100+'}" data-kind="${kind}">
+      <div class="s" id="cs-${kind}">⭐ —</div><button data-act="packcustom" data-kind="${kind}">${esc(t('buy'))}</button></div></div>`;
+}
+function sparkline(hist){
+  if (!hist || hist.length < 2) return '';
+  const mn = Math.min.apply(null, hist), mx = Math.max.apply(null, hist), rng = (mx - mn) || 1;
+  const pts = hist.map((v, i) => (i / (hist.length - 1) * 300).toFixed(1) + ',' + (62 - (v - mn) / rng * 54).toFixed(1)).join(' ');
+  return `<svg viewBox="0 0 300 70" style="width:100%;height:70px;display:block;margin:6px 0 2px;"><polyline points="${pts}" fill="none" stroke="var(--gold-soft)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/></svg>`;
+}
+function hcHtml(m){
+  if (!m) return '';
+  const up = m.raw > m.prev, down = m.raw < m.prev, arrow = up ? '🟢▲' : (down ? '🔴▼' : '⚪️');
+  return `<div class="ph" style="margin-top:26px;"><h1>${esc(t('hcT'))}</h1><p>${esc(t('hcSub'))}</p></div>
+    <div class="card gold"><div class="top" style="display:flex;justify-content:space-between;align-items:baseline;"><span style="color:var(--text-2);">${esc(t('hcRate'))}</span><span class="cinzel" style="font-size:26px;color:var(--gold-soft);">1 🪙 = ${m.rate} 💎 ${arrow}</span></div>
+      ${sparkline(m.history)}<div class="hint" style="margin:2px 0 10px;">${esc(t('hcRange'))}: ${m.min}–${m.max} 💎 · ⭐ ${m.stars_per_coin} / 🪙</div>
+      <div class="lab">${esc(t('hcQty'))}</div><div class="seg" id="hcPre">${[1, 2, 5, 10, 20, 50].map(q => `<button data-act="hcpre" data-q="${q}">${q}</button>`).join('')}</div>
+      <input class="field" id="hcQty" type="number" min="1" max="1000" value="1" inputmode="numeric">
+      <div class="pay" id="hcPay"></div></div>`;
+}
+function hcPayRefresh(){
+  const m = S.hc, el = $('hcPay'); if (!m || !el) return; const q = Math.max(1, parseInt(($('hcQty') || {}).value, 10) || 1);
+  el.innerHTML = `<button class="d" data-act="hcbuyd">💎 ${esc(t('hcBuyD', { c: fmt(q * m.rate) }))}</button><button class="g" data-act="hcbuys">⭐ ${esc(t('hcBuyS', { s: fmt(q * m.stars_per_coin) }))}</button>`;
+}
+function renderShop(){
+  const d = S.shop, box = $('shopBox'); if (!d) return;
+  const sec = (cat, title, sub) => { const list = d.items.filter(i => i.cat === cat); return list.length ? `<div class="ph" style="margin-top:8px;"><h1>${esc(title)}</h1>${sub ? `<p>${esc(sub)}</p>` : ''}</div><div class="sg">${list.map(shopCard).join('')}</div>` : ''; };
+  box.innerHTML = sec('dollar', t('shopT'), t('shopSub')) + sec('diamond', t('diamondShop')) + sec('coin', t('coinShop')) + hcHtml(S.hc) +
+    `<div class="ph" style="margin-top:26px;"><h1>${esc(t('packsT'))}</h1><p>${esc(t('packsSub'))}</p></div>
+    <div class="card"><div class="card-t"><span class="ic">💎</span>${esc(t('diamondW'))}</div>${packHtml('diamond', d.packs.diamond)}</div>
+    <div class="card"><div class="card-t"><span class="ic">💰</span>${esc(t('dollarW'))}</div>${packHtml('dollar', d.packs.dollar)}</div>`;
+  hcPayRefresh();
+}
+ENTER.shop = () => {
+  renderHeaders();
+  if (S.shop) renderShop();
+  if (!initData) { needTg($('shopBox')); return; }
+  api('/api/shop').then(d => { S.shop = d; renderShop(); }).catch(() => { if (!S.shop) offline($('shopBox')); });
+  api('/api/hc_market').then(m => { S.hc = m; renderShop(); }).catch(() => {});
+  if (!S.home) refreshHome();
+};
+function buyItem(cat, key){
+  const it = S.shop && S.shop.items.find(x => x.cat === cat && x.key === key); if (!it) return;
+  confirmBox(t('buyAsk', { n: it.name, p: fmt(it.price) + ' ' + symbol(it.currency) }), () => {
+    post('/api/shop_buy', { cat, key }).then(r => {
+      toast((r.ok ? '✅ ' : '') + (r.message || r.error || ''), !r.ok); if (r.ok) fx(); bal(r.balance);
+      api('/api/shop').then(d => { S.shop = d; renderShop(); }).catch(() => {}); refreshHome();
+    }).catch(() => toast(t('netErr'), true));
+  });
+}
+function customStars(kind, qty){
+  const p = S.shop && S.shop.packs; if (!p || !qty) return 0;
+  return kind === 'diamond' ? qty * p.diamond_rate : Math.max(1, Math.ceil(qty / p.dollar_per_star));
+}
+
+// ============================================================ O'TKAZMA
+S.tr = { to: 'username', what: 'dollar', item: null };
+function trRefresh(){
+  const p = $('trTarget'), noTarget = S.tr.to === 'param';
+  p.style.display = noTarget ? 'none' : 'block';
+  p.placeholder = S.tr.to === 'id' ? t('phId') : t('phUsername');
+  p.inputMode = S.tr.to === 'id' ? 'numeric' : 'text';
+  $('trItemBox').style.display = S.tr.what === 'inventory' ? 'block' : 'none';
+  if (S.tr.what === 'inventory') {
+    const own = ((S.home && S.home.items) || []).filter(i => i.qty > 0);
+    $('trItems').innerHTML = own.length ? own.map(i => `<button data-act="tritem" data-v="${esc(i.key)}" class="${S.tr.item === i.key ? 'on' : ''}">${esc(i.icon)} ${esc(i.name.replace(/^\S+\s*/, ''))} ×${i.qty}</button>`).join('') : `<div class="hint">${esc(t('noItems'))}</div>`;
+  }
+  document.querySelectorAll('#trTo button').forEach(b => b.classList.toggle('on', b.dataset.v === S.tr.to));
+  document.querySelectorAll('#trWhat button').forEach(b => b.classList.toggle('on', b.dataset.v === S.tr.what));
+}
+ENTER.transfer = () => { renderHeaders(); trRefresh(); if (!S.home && initData) refreshHome(() => trRefresh()); };
+function doTransfer(){
+  if (!initData) { toast(t('needTg'), true); return; }
+  const body = { to_type: S.tr.to, to: $('trTarget').value.trim(), what: S.tr.what, amount: parseInt($('trAmount').value, 10), item: S.tr.item };
+  if (S.tr.to !== 'param' && !body.to) { toast(t('phUsername'), true); return; }
+  if (!(body.amount >= 1)) { toast(t('amount'), true); return; }
+  if (S.tr.what === 'inventory' && !S.tr.item) { toast(t('item'), true); return; }
+  $('trBtn').disabled = true;
+  post('/api/transfer', body).then(r => { toast((r.ok ? '✅ ' : '') + (r.message || r.error || ''), !r.ok); if (r.ok) { fx(); $('trAmount').value = ''; } bal(r.balance); if (r.ok) refreshHome(() => trRefresh()); })
+    .catch(() => toast(t('netErr'), true)).finally(() => { $('trBtn').disabled = false; });
+}
+
+// ============================================================ MENYU
+const TILES = [['love','💞'], ['hero','🏆'], ['skins','✨'], ['clan','🏛'], ['top','📊'], ['quests','📜'], ['history','🧾'], ['news','🔔'], ['premium','💎'], ['play','🎮'], ['team','🤖'], ['help','💬'], ['settings','⚙️']];
+function renderMenu(){
+  const isOwner = !!(S.home && S.home.is_owner);
+  $('menuTiles').innerHTML = TILES.map(x => { const tl = (I18N[LANG].mTile || I18N.uz.mTile)[x[0]];
+    return `<button class="tile" data-act="${x[0] === 'team' ? 'team' : 'go'}" data-p="${x[0]}"><div class="ic">${x[1]}</div><div class="tn">${esc(tl[0])}</div><div class="td">${esc(tl[1])}</div>${x[0] === 'news' && S.newsUnread ? '<span class="nd"></span>' : ''}</button>`; }).join('')
+    + (isOwner ? `<button class="tile" data-act="go" data-p="owner" style="border-color:rgba(var(--gold-rgb),.5);"><div class="ic">👑</div><div class="tn">${esc(t('ownerT'))}</div><div class="td">${esc(t('ownerSub'))}</div></button>` : '');
+}
+ENTER.menu = () => { renderMenu(); if (initData) api('/api/news').then(d => { S.newsUnread = (d.items || []).some(n => n.unread); renderMenu(); }).catch(() => {}); };
+
+// ============================================================ 👑 OWNER PANEL
+function ownStatHtml(n, key){ return `<div class="ownStat"><div class="n">${fmt(n)}</div><div class="l">${esc(t(key))}</div></div>`; }
+function renderOwnerPanel(d){
+  const box = $('ownerBox'); if (!box) return;
+  if (!d || !d.ok) { box.innerHTML = `<div class="empty">⛔️</div>`; return; }
+  const s = d.stats;
+  box.innerHTML = `<div class="ownStats">${ownStatHtml(s.users, 'ownStatUsers')}${ownStatHtml(s.active_games, 'ownStatGames')}${ownStatHtml(s.elite_count, 'ownStatElite')}${ownStatHtml(s.known_groups, 'ownStatGroups')}</div>
+    <div class="card"><div class="card-t"><span class="ic">🎚</span>${esc(t('ownerT'))}</div><div class="lst" style="border:none;margin:0;">
+      ${d.toggles.map(tg2 => `<div class="li ownRow"><div class="b lab">${esc(tg2.label)}</div><button class="tgl ${tg2.on ? 'on' : ''}" data-act="ownertoggle" data-k="${tg2.key}" data-on="${tg2.on ? '0' : '1'}"><i></i></button></div>`).join('')}
+    </div></div>
+    <div class="card gold"><div class="card-t"><span class="ic">🔥</span>${esc(t('ownDiscT'))}</div>
+      <p class="hint" style="text-align:left;margin:0 0 8px;">${esc(t('ownDiscSub'))}</p>
+      ${d.elite_discount && d.elite_discount.percent ? `<div class="hint" style="text-align:left;color:var(--gold-soft);">🔥 ${d.elite_discount.percent}% — <span id="ownCd"></span></div>` : ''}
+      <div class="ownDisc"><input class="field" id="ownPct" type="number" min="0" max="90" placeholder="${esc(t('ownDiscPct'))}" value="${d.elite_discount ? d.elite_discount.percent || '' : ''}">
+        <input class="field" id="ownMin" type="number" min="0" placeholder="${esc(t('ownDiscMin'))}"></div>
+      <div class="two" style="margin-top:10px;"><button class="ok" data-act="ownerdiscount" data-off="1">${esc(t('ownDiscOff'))}</button><button class="ok" data-act="ownerdiscount">${esc(t('ownDiscBtn'))}</button></div>
+    </div>
+    <div class="hint">🪙 1 = ${d.hc_rate} 💎</div>`;
+  if (d.elite_discount && d.elite_discount.until) {
+    const tick = () => { const el = $('ownCd'); if (!el) { clearInterval(iv); return; } const left = d.elite_discount.until - Math.floor(Date.now() / 1000);
+      if (left <= 0) { clearInterval(iv); loadOwnerPanel(); return; } el.textContent = fmtCountdown(left); };
+    var iv = setInterval(tick, 1000); tick();
+  }
+}
+function loadOwnerPanel(){ api('/api/owner_panel').then(renderOwnerPanel).catch(() => offline($('ownerBox'))); }
+ENTER.owner = () => { if (!initData) { needTg($('ownerBox')); return; } loadOwnerPanel(); };
+
+// ---- jamoa ("Bizning botlar")
+function openTeam(){
+  const draw = team => {
+    const cards = (team || []).map(m => `<div class="tmc"><div class="av">${esc((m.name || '?').charAt(0).toUpperCase())}</div><div class="n">${esc(m.name)}</div><div class="r">${esc(m.role || '')}</div>
+      <div class="p">🚀 ${m.projects || 1} ${esc(t('projects'))}</div>${m.username ? `<button data-act="link" data-url="https://t.me/${esc(m.username)}">✉️ ${esc(t('write'))}</button>` : ''}</div>`).join('');
+    const bots = OUR_BOTS.map(b => `<div class="botc"><span class="bi">${esc(b.icon)}</span><div><div class="bn">${esc(b.name)}</div><div class="bd2">${esc(b.desc)}</div></div><button data-act="link" data-url="https://t.me/${esc(b.username)}">›</button></div>`).join('');
+    openSheet('🤖 ' + esc(t('botsT')), `<div class="sect" style="margin-top:0;"><span>👥 ${esc(t('teamT'))}</span></div><div class="tm">${cards || ''}</div>${bots}<button class="btn-ghost full" data-act="gohelp">✉️ ${esc(t('contactUs'))}</button>`);
+  };
+  draw([]);
+  if (initData) api('/api/team').then(d => draw(d.team)).catch(() => {});
+}
+
+// ============================================================ SEVGI GALAKTIKASI
+S.love = { tab: 'gal', fate: 'find', pair: null, fateData: null, raf: 0, run: false, timer: 0, poll: 0 };
+function stopBg(){ S.love.run = false; cancelAnimationFrame(S.love.raf); clearInterval(S.love.timer); clearInterval(S.love.poll); clearInterval(S.chatPoll); }
+function setLoveTab(tab){
+  S.love.tab = tab; stopBg();
+  document.querySelectorAll('#loveTabs button').forEach(b => b.classList.toggle('on', b.dataset.t === tab));
+  ['gal', 'fate', 'fore'].forEach(x => { $('love-' + x).style.display = x === tab ? 'block' : 'none'; });
+  if (!initData) { needTg($('love-' + tab)); return; }
+  if (tab === 'gal') { loadPair(); startGalaxy(); S.love.poll = setInterval(loadPair, 15000); }
+  else if (tab === 'fate') loadFate();
+  else loadForecast('');
+}
+ENTER.love = () => setLoveTab(S.love.tab);
+function loadPair(){ api('/api/pair_status').then(d => { S.love.pair = d; renderPair(); }).catch(() => {}); }
+function mmss(s){ s = Math.max(0, s); return String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0'); }
+function renderPair(){
+  const d = S.love.pair; if (!d) return;
+  $('freeStars').textContent = fmt(d.free);
+  const btn = $('pairBtn'), pill = $('pairPill'); clearInterval(S.love.timer);
+  if (!d.single) { btn.disabled = true; btn.textContent = '💞 ' + (LANG === 'ru' ? 'Вы в паре' : LANG === 'en' ? 'You are a couple' : 'Siz juftlikdasiz'); pill.style.display = 'none'; return; }
+  if (d.pending) {
+    btn.disabled = true; btn.textContent = '⏳'; let left = d.pending.left; pill.style.display = 'block';
+    const upd = () => { pill.textContent = (LANG === 'ru' ? 'Запрос отправлен · ждём ответ · ' : LANG === 'en' ? 'Request sent · waiting for reply · ' : "So'rov yuborilgan · javob kutilmoqda · ") + mmss(left--); if (left < 0) { clearInterval(S.love.timer); loadPair(); } };
+    upd(); S.love.timer = setInterval(upd, 1000);
+  } else { btn.disabled = false; btn.textContent = t('pairBtn'); pill.style.display = 'none'; }
+}
+function startGalaxy(){
+  const cv = $('galCv'), ctx = cv.getContext('2d'), dpr = Math.min(2, window.devicePixelRatio || 1);
+  const w = cv.clientWidth || 340, h = cv.clientHeight || 300; cv.width = w * dpr; cv.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const pts = Array.from({ length: 420 }, (_, i) => { const arm = i % 3, r = Math.pow(Math.random(), .7); return { r, a: arm * 2.094 + r * 7 + (Math.random() - .5) * .5, z: Math.random(), c: ['#ff6f91', '#ffb3c6', '#f0d27a', '#ffffff'][(Math.random() * 4) | 0] }; });
+  S.love.run = true; const t0 = performance.now();
+  (function frame(now){
+    if (!S.love.run) return; const tt = (now - t0) / 1000, cx = w / 2, cy = h / 2, R = Math.min(w, h) * .46; ctx.clearRect(0, 0, w, h);
+    pts.forEach(p => { const a = p.a + (REDUCED ? 0 : tt * (.35 / (p.r + .25)) * .35), x = cx + Math.cos(a) * p.r * R * 1.45, y = cy + Math.sin(a) * p.r * R * .82;
+      ctx.globalAlpha = .35 + p.z * .65; ctx.fillStyle = p.c; ctx.beginPath(); ctx.arc(x, y, .7 + p.z * 1.5, 0, 6.283); ctx.fill(); });
+    ctx.globalAlpha = 1; const pulse = REDUCED ? 0 : Math.sin(tt * 2.4) * 3;
+    ctx.strokeStyle = 'rgba(255,255,255,.85)'; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.arc(cx, cy, 16 + pulse, 0, 6.283); ctx.stroke();
+    ctx.fillStyle = '#fff'; ctx.font = '600 12.5px Inter, sans-serif'; ctx.textAlign = 'center'; ctx.fillText((LANG === 'ru' ? 'Вы здесь' : LANG === 'en' ? 'You are here' : 'Siz shu yerda') + ' 💞', cx, cy - 28);
+    S.love.raf = requestAnimationFrame(frame);
+  })(t0);
+}
+function setFateTab(tab){
+  S.love.fate = tab; document.querySelectorAll('#fateTabs button').forEach(b => b.classList.toggle('on', b.dataset.t === tab)); renderFate();
+}
+function loadFate(){
+  api('/api/fate').then(d => { S.love.fateData = d; renderFate(); }).catch(() => offline($('fateBox')));
+}
+function renderFate(){
+  const d = S.love.fateData, box = $('fateBox'); if (!d) { box.innerHTML = `<div class="empty">${esc(t('loading'))}</div>`; return; }
+  if (S.love.fate === 'find') {
+    box.innerHTML = d.listings.length ? `<div class="fg">${d.listings.map(f => `<div class="fc"><div class="fav">${esc((f.name || '?').trim().charAt(0).toUpperCase())}</div><div class="fn">${esc(f.name)}</div>
+      <div class="fq">${f.quote ? '“' + esc(f.quote) + '”' : '&nbsp;'}</div><span class="fp">${fmt(f.price)} 💎</span><button data-act="fatebuy" data-id="${f.seller_id}" data-price="${f.price}">💎 ${LANG === 'ru' ? 'Связать судьбу' : LANG === 'en' ? 'Bind fate' : "Taqdirni bog'lash"}</button></div>`).join('')}</div>`
+      : `<div class="empty">${LANG === 'ru' ? 'Пока нет объявлений. Выставьте свою карточку!' : LANG === 'en' ? 'No listings yet. Post your card!' : "Hozircha e'lonlar yo'q. Birinchi bo'lib o'zingizniki qo'ying!"}</div>`;
+    return;
+  }
+  const m = d.mine;
+  if (!d.single) { box.innerHTML = `<div class="empty">💍 ${LANG === 'ru' ? 'Вы уже в паре.' : LANG === 'en' ? 'You are already a couple.' : 'Siz allaqachon juftlikdasiz.'}</div>`; return; }
+  box.innerHTML = `<div class="card gold"><div class="lab" style="margin-top:0;">${LANG === 'ru' ? 'Цена (💎 алмазы)' : LANG === 'en' ? 'Price (💎 diamonds)' : 'Narx (💎 olmos)'}</div>
+    <input class="field" id="fPrice" type="number" min="1" max="100000" inputmode="numeric" placeholder="100" value="${m ? m.price : ''}">
+    <div class="lab">${LANG === 'ru' ? 'Короткая цитата' : LANG === 'en' ? 'Short quote' : 'Qisqa iqtibos'}</div>
+    <input class="field" id="fQuote" maxlength="80" value="${m ? esc(m.quote) : ''}">
+    <div class="row2"><button class="btn-gold" data-act="fatelist">${m && m.active ? '♻️' : '💞'} ${LANG === 'ru' ? 'Выставить' : LANG === 'en' ? 'Publish' : "E'lon qilish"}</button>${m && m.active ? `<button class="btn-ghost" data-act="fateunlist">${LANG === 'ru' ? 'Снять' : LANG === 'en' ? 'Remove' : 'Olib tashlash'}</button>` : ''}</div>
+    <div class="hint">${LANG === 'ru' ? 'Кто заплатит эту цену — деньги сразу перейдут вам, и вы станете парой.' : LANG === 'en' ? 'Whoever pays this price — the money goes to you instantly and you become a couple.' : "Kim shu narxni to'lasa, pul darhol sizga o'tadi va ikkingiz juft bo'lasiz."}</div></div>`;
+}
+function loadForecast(q){
+  api('/api/forecast', q ? '&q=' + encodeURIComponent(q) : '').then(d => {
+    const L = { love: LANG === 'ru' ? 'Любовь сегодня' : LANG === 'en' ? 'Love today' : 'Bugungi sevgi omadi', num: LANG === 'ru' ? 'Счастливое число' : LANG === 'en' ? 'Lucky number' : 'Omadli son',
+      cp: LANG === 'ru' ? 'Совместимость' : LANG === 'en' ? 'Compatibility' : 'Juftlik mosligi', ph: LANG === 'ru' ? '@username или имя' : LANG === 'en' ? '@username or name' : '@username yoki ism', go: LANG === 'ru' ? 'Проверить' : LANG === 'en' ? 'Check' : 'Tekshirish' };
+    const cp = d.compat ? `<div class="card gold fore" style="margin-top:12px;"><div class="lab" style="margin:0;">${esc(L.cp)}: ${esc(d.compat.name)}</div><div class="pc">${d.compat.percent}%</div><div class="ad">${esc(d.compat.text)}</div></div>` : '';
+    $('foreBox').innerHTML = `<div class="card gold fore"><div style="font-size:34px;">${d.mood}</div><div class="lab" style="text-align:center;">${esc(L.love)}</div><div class="pc">${d.love}%</div>
+      <div class="ad">${esc(d.advice)}</div><div class="lab" style="text-align:center;">${esc(L.num)}: <b class="cinzel" style="color:var(--gold-soft)">${d.lucky_number}</b></div></div>
+      <div class="card"><div class="lab" style="margin-top:0;">${esc(L.cp)}</div><input class="field" id="fcName" placeholder="${esc(L.ph)}" value="${esc(q || '')}" autocomplete="off"><button class="btn-gold full" data-act="compat">${esc(L.go)}</button></div>${cp}`;
+  }).catch(() => offline($('foreBox')));
+}
+
+// ============================================================ GEROY
+function abilityRows(list, level){
+  return list.map(a => { const on = level != null && level >= a.unlock;
+    return `<div class="ab ${on ? '' : 'lk'}"><div class="i">${on ? '✅' : '🔒'}</div><div><div class="n">${esc(a.name)} <span style="color:var(--text-2);font-weight:400;">· ${a.unlock}</span></div><div class="d">${esc(a.desc)}</div></div></div>`; }).join('');
+}
+function renderHero(d){
+  const box = $('heroBox');
+  if (d.has_hero) {
+    const h = d.hero, pips = Array.from({ length: d.max_level }, (_, i) => `<span class="${i < h.level ? 'on' : ''}"></span>`).join('');
+    const up = h.next_cost_diamond != null ? `<button class="btn-gold full" data-act="herolv">⬆️ ${h.next_cost_diamond} 💎</button><div class="hint">⭐ ${h.next_cost_stars} — /geroyim</div>` : `<div class="hint">🌟 MAX</div>`;
+    box.innerHTML = `<div class="hero-c ${h.rarity === 'Afsonaviy' ? 'r-af' : ''}"><div class="hn">${esc(h.name)}</div><div class="hr">${esc(h.rarity)} · ${h.level}/${d.max_level}</div><div class="pips">${pips}</div>${abilityRows(h.abilities, h.level)}</div>
+      <div class="lst"><div class="li"><div class="b"><b>🤖 Auto</b><span>${LANG === 'ru' ? 'Защита и способности работают сами' : LANG === 'en' ? 'Protection and abilities work automatically' : 'Himoya va qobiliyatlar o‘zi ishlaydi'}</span></div><button class="tgl ${h.auto ? 'on' : ''}" data-act="heroauto"><i></i></button></div></div>${up}`;
+    return;
+  }
+  box.innerHTML = d.catalog.map(h => `<div class="hero-c ${h.rarity === 'Afsonaviy' ? 'r-af' : ''}"><div class="hn">${esc(h.name)}</div><div class="hr">${esc(h.rarity)}</div><div class="ab" style="border:none;padding-top:0;"><div class="d">${esc(h.desc)}</div></div>${abilityRows(h.abilities, null)}
+    <button class="btn-gold full" style="margin-top:10px;" data-act="herobuy" data-key="${h.key}" data-price="${h.price_diamond}">${esc(t('buy'))} — ${h.price_diamond} 💎</button><div class="hint" style="margin:6px 0 0;">⭐ ${h.price_stars} — /geroyim</div></div>`).join('');
+}
+ENTER.hero = () => { if (!initData) { needTg($('heroBox')); return; } api('/api/hero').then(renderHero).catch(() => offline($('heroBox'))); };
+function heroAct(action, key){
+  post('/api/hero_action', { action, key }).then(r => { toast((r.ok ? '🏆 ' : '') + (r.message || r.error || ''), !r.ok); if (r.ok && action !== 'toggle_auto') fx(); bal(r.balance); ENTER.hero(); }).catch(() => toast(t('netErr'), true));
+}
+
+// ============================================================ KLAN / REYTING
+ENTER.clan = () => {
+  const box = $('clanBox'); if (!initData) { needTg(box); return; }
+  api('/api/clan').then(d => {
+    if (!d.has_clan) { box.innerHTML = `<div class="empty">🏛 ${LANG === 'ru' ? 'У вас ещё нет клана.' : LANG === 'en' ? 'You have no clan yet.' : "Sizda hali klan yo'q."}</div><button class="btn-gold full" style="margin-top:12px;" data-act="link" data-url="${botLink('clan_create_info')}">🏛 ${LANG === 'ru' ? 'Создать клан' : LANG === 'en' ? 'Create clan' : 'Klan ochish'}</button>`; return; }
+    box.innerHTML = `<div class="card gold"><div class="card-t"><span class="ic">🏛</span>${esc(d.name)}</div><div class="stats" style="margin:0;"><div class="stat"><div class="n">${d.level}</div><div class="l">LVL</div></div><div class="stat"><div class="n">${d.member_count}</div><div class="l">👥</div></div>
+      <div class="stat"><div class="n">${d.wins}</div><div class="l">🏆</div></div><div class="stat"><div class="n">${d.losses}</div><div class="l">💀</div></div></div></div>
+      <div class="lst">${d.members.map(m => `<div class="li"><div class="a">${m.role === 'Lider' ? '👑' : '👤'}</div><div class="b"><b>${esc(m.name)}</b><span>${esc(m.role)}</span></div></div>`).join('')}</div>`;
+  }).catch(() => offline(box));
+};
+S.topScope = 'server';
+function loadTop(){
+  const box = $('topBox'); if (!initData) { needTg(box); return; }
+  api('/api/top', '&scope=' + S.topScope).then(d => {
+    const me = TGU ? TGU.id : 0;
+    box.innerHTML = (d.rows || []).length ? `<div class="lst">${d.rows.map((r, i) => `<div class="li"><div class="medal">${['🥇', '🥈', '🥉'][i] || (i + 1)}</div><div class="b"><b>${esc(r.name)}${r.uid === me ? ' ⭐' : ''}</b></div><div class="z">${fmt(r.value)} <small style="font-weight:400;color:var(--text-2)">${esc(r.label)}</small></div></div>`).join('')}</div>` : `<div class="empty">—</div>`;
+  }).catch(() => offline(box));
+}
+ENTER.top = loadTop;
+
+// ============================================================ KOSMETIKA / VAZIFALAR / TARIX / YANGILIKLAR
+const KIND_LABEL = { frame: 'Ramka', animation: 'Animatsiya', skin: 'Skin' };
+ENTER.skins = () => {
+  const box = $('skinsBox'); if (!initData) { needTg(box); return; }
+  api('/api/cosmetics').then(d => {
+    const items = d.items || [];
+    box.innerHTML = items.length ? `<div class="cs">${items.map(it => { const low = it.left <= Math.max(2, Math.ceil(it.stock * 0.2));
+      return `<div class="cosc k-${it.kind === 'animation' ? 'anim' : it.kind}"><div class="e">${esc(it.emoji)}</div><div class="n">${esc(it.name)}</div><div class="st ${low ? 'low' : ''}">${low ? '🔥 ' + it.left + ' ta qoldi!' : it.left + '/' + it.stock}</div>
+      <div class="p">${fmt(it.price)} ${it.currency === 'stars' ? '⭐' : symbol(it.currency)}</div>${it.owned ? `<div class="own">✅</div>` : `<button data-act="link" data-url="${botLink('cosmetic_buy_' + it.id)}">${esc(t('buy'))}</button>`}</div>`; }).join('')}</div>` : `<div class="empty">✨ —</div>`;
+  }).catch(() => offline(box));
+};
+function loadQuests(){
+  const box = $('questsBox'); if (!initData) { needTg(box); return; }
+  api('/api/quests').then(d => {
+    const grp = (title, list) => list.length ? `<div class="sect"><span>${title}</span></div><div class="lst">${list.map(q => `<div class="q"><div class="h"><span>${q.icon}</span><span style="font-family:Inter;color:var(--text-0)">${esc(q.name)}</span><span>+${q.reward}$</span></div>
+      <div class="track"><i style="width:${Math.round(q.progress / q.target * 100)}%"></i></div><div class="m"><span>${q.progress}/${q.target}</span>${q.claimed ? '<span class="done">✅</span>' : (q.progress >= q.target ? `<button data-act="quest" data-key="${q.key}">${esc(t('claim'))}</button>` : '<span></span>')}</div></div>`).join('')}</div>` : '';
+    box.innerHTML = grp(LANG === 'ru' ? 'Ежедневные' : LANG === 'en' ? 'Daily' : 'Kunlik', d.kunlik || []) + grp(LANG === 'ru' ? 'Еженедельные' : LANG === 'en' ? 'Weekly' : 'Haftalik', d.haftalik || []);
+  }).catch(() => offline(box));
+}
+ENTER.quests = loadQuests;
+ENTER.history = () => {
+  const box = $('historyBox'); if (!initData) { needTg(box); return; }
+  api('/api/history').then(d => { box.innerHTML = (d.items || []).length ? `<div class="lst">${d.items.map(i => `<div class="li"><div class="a">${i.icon}</div><div class="b"><b>${esc(i.title)}</b><span>${esc(i.time)}</span></div><div class="z ${i.pos ? 'pos' : 'neg'}">${esc(i.amt)}</div></div>`).join('')}</div>` : `<div class="empty">🧾 —</div>`; }).catch(() => offline(box));
+};
+ENTER.news = () => {
+  const box = $('newsBox'); if (!initData) { needTg(box); return; }
+  api('/api/news').then(d => { box.innerHTML = (d.items || []).length ? `<div class="lst">${d.items.map(n => `<div class="li"><div class="a">${n.icon}</div><div class="b"><b>${esc(n.title)}${n.unread ? ' 🔴' : ''}</b><span>${esc(n.desc)}</span><span style="display:block;margin-top:2px;">${esc(n.time)}</span></div></div>`).join('')}</div>` : `<div class="empty">📢 —</div>`; S.newsUnread = false; post('/api/news_seen', {}).catch(() => {}); }).catch(() => offline(box));
+};
+
+// ============================================================ PREMIUM / YORDAM / SOZLAMALAR
+function loadPremium(){
+  const box = $('premiumBox'); if (!initData) { needTg(box); return; }
+  api('/api/premium').then(d => { box.innerHTML = (d.items || []).length ? d.items.map(g => `<div class="pgc"><div class="i">💎</div><div class="m"><div class="t">${esc(g.title)}</div><div class="s">${g.owned ? '✅' : fmt(g.price) + (g.currency === 'diamond' ? ' 💎' : ' $')}</div></div>
+    <button data-act="pgbuy" data-id="${g.id}" data-owned="${g.owned ? 1 : 0}" data-price="${g.price} ${g.currency === 'diamond' ? '💎' : '$'}">${g.owned ? '➜' : esc(t('buy'))}</button></div>`).join('') : `<div class="empty">💎 —</div>`; }).catch(() => offline(box));
+}
+ENTER.premium = loadPremium;
+S.chatPoll = 0;
+function renderThread(items){
+  const body = $('chatBody'), stick = body.scrollTop + body.clientHeight >= body.scrollHeight - 50;
+  body.innerHTML = (items && items.length) ? items.map(m => `<div class="bub ${m.from === 'me' ? 'me' : 'op'}">${esc(m.text)}<small>${esc(m.time)}</small></div>`).join('') : `<div class="hello">${esc(t('helloSupport'))}</div>`;
+  if (stick || !items.length) body.scrollTop = body.scrollHeight;
+}
+function loadThread(){ api('/api/support_thread').then(d => renderThread(d.items)).catch(() => {}); }
+ENTER.help = () => { if (!initData) { $('chatBody').innerHTML = `<div class="hello">${esc(t('needTg'))}</div>`; return; } loadThread(); S.chatPoll = setInterval(loadThread, 12000); };
+function sendChat(photo){
+  const inp = $('chatInput'), text = inp.value.trim(); if (!text && !photo) return; inp.value = '';
+  post('/api/support', { text, photo }).then(r => { if (!r.ok) toast(r.error || 'Xatolik', true); loadThread(); }).catch(() => toast(t('netErr'), true));
+}
+function pickPhoto(file){
+  if (!file) return; const img = new Image(), fr = new FileReader();
+  fr.onload = () => { img.onload = () => { const s = Math.min(1, 1024 / Math.max(img.width, img.height)), c = document.createElement('canvas'); c.width = Math.round(img.width * s); c.height = Math.round(img.height * s);
+    c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); sendChat(c.toDataURL('image/jpeg', 0.8)); }; img.src = fr.result; };
+  fr.readAsDataURL(file);
+}
+function renderSettings(){
+  $('themeGridPage').innerHTML = themeGridHtml();
+  $('langList').innerHTML = LANGS.map(l => `<div class="li" data-act="lang" data-l="${l[0]}" style="cursor:pointer;"><div class="a">${l[1]}</div><div class="b"><b>${l[2]}</b></div>${l[0] === LANG ? '<div class="z">✓</div>' : ''}</div>`).join('');
+}
+ENTER.settings = renderSettings;
+ENTER.play = () => {};
+function setLang(l){ if (!I18N[l]) return; LANG = l; lsSet('hm_lang', l); closeOv(); applyI18n(); renderCurrent(); }
+function renderCurrent(){ (ENTER[S.page] || (() => {}))(); if (S.page === 'love') setLoveTab(S.love.tab); }
+
+// ============================================================ HODISALAR (delegatsiya)
+const ACT = {
+  go: el => go(el.dataset.p), closeov: () => closeOv(), theme: el => { applyTheme(el.dataset.th); if ($('ov').classList.contains('show')) closeOv(); if (S.page === 'settings') renderSettings(); },
+  themesheet: () => openSheet('🎨 ' + esc(t('theme')), `<div class="tg">${themeGridHtml()}</div>`),
+  langpop: el => popMenu(el, LANGS.map(l => `<button data-act="lang" data-l="${l[0]}" class="${l[0] === LANG ? 'on' : ''}"><span>${l[1]}</span>${l[2]}</button>`).join('')),
+  lang: el => setLang(el.dataset.l), team: () => openTeam(), gohelp: () => { closeOv(); go('help'); }, link: el => openLink(el.dataset.url),
+  role: el => showRole(el.dataset.g, Number(el.dataset.i)),
+  claim: () => { const b = $('claimBtn'); b.disabled = true; post('/api/daily_bonus_claim', {}).then(r => { if (r.ok) { toast('🎁 ' + (r.kind === 'dollar' ? '+' + fmt(r.amount) + ' 💵' : '+' + r.amount + ' 💎') + '  •  ' + r.streak + ' 🔥'); fx(); } else toast(r.already ? '✓' : (r.error || 'Xatolik'), !r.already); bal(r.balance); loadDaily(); }).catch(() => { toast(t('netErr'), true); b.disabled = false; }); },
+  elitecompare: () => openEliteCompare(),
+  ownertoggle: el => { const key = el.dataset.k, on = el.dataset.on === '1';
+    post('/api/owner_toggle', { key, on }).then(r => { toast((r.ok ? '✅ ' : '') + (r.message || r.error || ''), !r.ok); if (r.ok) loadOwnerPanel(); }).catch(() => toast(t('netErr'), true)); },
+  ownerdiscount: el => { const off = el.dataset.off === '1';
+    const percent = off ? 0 : (parseInt($('ownPct').value, 10) || 0), minutes = off ? 0 : (parseInt($('ownMin').value, 10) || 0);
+    post('/api/owner_discount', { percent, minutes }).then(r => { toast((r.ok ? '✅ ' : '') + (r.message || r.error || ''), !r.ok); if (r.ok) { loadOwnerPanel(); refreshHome(); } }).catch(() => toast(t('netErr'), true)); },
+  elite: el => { const days = Number(el.dataset.days), how = el.dataset.how, p = S.home.vip.plans.find(x => x.days === days);
+    if (how === 's') payStars('elite', { days }); else confirmBox(t('buyAsk', { n: t('vipName', { d: days }), p: p.diamond + ' 💎' }), () => post('/api/elite_buy', { days }).then(r => { toast((r.ok ? '👑 ' : '') + (r.message || r.error || ''), !r.ok); if (r.ok) fx(); bal(r.balance); refreshHome(); }).catch(() => toast(t('netErr'), true))); },
+  gto: el => { S.gift.to = el.dataset.v; document.querySelectorAll('#gTo button').forEach(b => b.classList.toggle('on', b === el)); const i = $('gTarget'); i.style.display = S.gift.to === 'param' ? 'none' : 'block'; i.placeholder = S.gift.to === 'id' ? t('friendId') : t('friendPh'); },
+  gdays: el => { S.gift.days = Number(el.dataset.v); document.querySelectorAll('#gDays button').forEach(b => b.classList.toggle('on', b === el)); renderGiftPay(); },
+  gift: el => { const days = S.gift.days || S.home.vip.plans[0].days, to = $('gTarget').value.trim(), how = el.dataset.how;
+    if (S.gift.to !== 'param' && !to) { toast(t('friendPh'), true); return; }
+    if (how === 's') {   // ⭐ Stars: avval oluvchini aniqlaymiz, keyin to'lov havolasi
+      post('/api/resolve_target', { to_type: S.gift.to, to }).then(r => { if (!r.ok) { toast(r.message || r.error || 'Xatolik', true); return; } payStars('elitegift', { days, target: r.uid }); }).catch(() => toast(t('netErr'), true));
+      return; }
+    const p = S.home.vip.plans.find(x => x.days === Number(days));
+    confirmBox(t('buyAsk', { n: t('giftT'), p: p.diamond + ' 💎' }), () => post('/api/elite_gift', { to_type: S.gift.to, to, days }).then(r => { toast((r.ok ? '🎁 ' : '') + (r.message || r.error || ''), !r.ok); if (r.ok) fx(); bal(r.balance); refreshHome(); }).catch(() => toast(t('netErr'), true))); },
+  buyitem: el => buyItem(el.dataset.cat, el.dataset.key),
+  pack: el => payStars(el.dataset.kind, { qty: Number(el.dataset.qty) }),
+  packcustom: el => { const kind = el.dataset.kind, qty = parseInt($('cu-' + kind).value, 10); if (!(qty >= (kind === 'diamond' ? 1 : 100))) { toast(kind === 'diamond' ? '1+' : '100+', true); return; } payStars(kind, { qty }); },
+  tritem: el => { S.tr.item = el.dataset.v; trRefresh(); },
+  hcpre: el => { $('hcQty').value = el.dataset.q; hcPayRefresh(); },
+  hcbuyd: () => { const q = parseInt($('hcQty').value, 10) || 0; if (q < 1) { toast('1+', true); return; }
+    confirmBox(t('buyAsk', { n: 'Hunter Coin ×' + q, p: fmt(q * S.hc.rate) + ' 💎' }), () => post('/api/hc_buy', { qty: q }).then(r => { toast((r.ok ? '🪙 ' : '') + (r.message || r.error || ''), !r.ok); if (r.ok) fx(); bal(r.balance); api('/api/hc_market').then(m => { S.hc = m; renderShop(); }).catch(() => {}); }).catch(() => toast(t('netErr'), true))); },
+  hcbuys: () => { const q = parseInt($('hcQty').value, 10) || 0; if (q < 1) { toast('1+', true); return; } payStars('coin', { qty: q }); },
+  fatebuy: el => confirmBox(t('buyAsk', { n: '💞', p: el.dataset.price + ' 💎' }), () => post('/api/fate_buy', { seller_id: Number(el.dataset.id) }).then(r => { toast((r.ok ? '💞 ' : '') + (r.message || r.error || ''), !r.ok); if (r.ok) fx(); bal(r.balance); loadFate(); }).catch(() => toast(t('netErr'), true))),
+  fatelist: () => post('/api/fate_list', { price: parseInt($('fPrice').value, 10), quote: $('fQuote').value }).then(r => { toast((r.ok ? '💞 ' : '') + (r.message || r.error || ''), !r.ok); loadFate(); }).catch(() => toast(t('netErr'), true)),
+  fateunlist: () => post('/api/fate_unlist', {}).then(r => { toast(r.message || '✓'); loadFate(); }).catch(() => {}),
+  compat: () => loadForecast($('fcName').value.trim()),
+  herobuy: el => confirmBox(t('buyAsk', { n: 'Hero', p: el.dataset.price + ' 💎' }), () => heroAct('buy', el.dataset.key)),
+  herolv: () => heroAct('levelup'), heroauto: () => heroAct('toggle_auto'),
+  quest: el => post('/api/quest_claim', { key: el.dataset.key }).then(r => { toast((r.ok ? '📜 ' : '') + (r.message || r.error || ''), !r.ok); if (r.ok) fx(); bal(r.balance); loadQuests(); }).catch(() => toast(t('netErr'), true)),
+  pgbuy: el => { const go2 = () => post('/api/premium_buy', { id: Number(el.dataset.id) }).then(r => { if (r.ok && r.link) { toast('✅ ' + r.message); fx(); bal(r.balance); openLink(r.link); } else toast(r.message || r.error || 'Xatolik', true); loadPremium(); }).catch(() => toast(t('netErr'), true));
+    if (el.dataset.owned === '1') go2(); else confirmBox(t('buyAsk', { n: 'Premium', p: el.dataset.price }), go2); },
+};
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-act]'); if (el && ACT[el.dataset.act]) { e.preventDefault(); SND.tap(); ACT[el.dataset.act](el, e); return; }
+  const back_ = e.target.closest('[data-back]'); if (back_) { SND.tap(); back(); return; }
+  const nav = e.target.closest('#nav button'); if (nav) { SND.nav(); goMain(nav.dataset.go); return; }
+  const tab = e.target.closest('.seg button, #loveTabs button, #fateTabs button, #topTabs button, #trTo button, #trWhat button'); if (tab) SND.tap();
+});
+$('soundBtn').addEventListener('click', () => { const v = !SND.isOn(); SND.toggle(v); $('soundBtn').textContent = v ? '🔊' : '🔇'; if (v) SND.tap(); });
+$('soundBtn').textContent = SND.isOn() ? '🔊' : '🔇';
+$('fab').addEventListener('click', () => go('help'));
+$('roleQ').addEventListener('input', renderRoles);
+$('trBtn').addEventListener('click', doTransfer);
+$('trTo').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { S.tr.to = b.dataset.v; trRefresh(); } });
+$('trWhat').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { S.tr.what = b.dataset.v; trRefresh(); } });
+$('loveTabs').addEventListener('click', e => { const b = e.target.closest('button'); if (b) setLoveTab(b.dataset.t); });
+$('fateTabs').addEventListener('click', e => { const b = e.target.closest('button'); if (b) setFateTab(b.dataset.t); });
+$('topTabs').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { S.topScope = b.dataset.t; document.querySelectorAll('#topTabs button').forEach(x => x.classList.toggle('on', x === b)); loadTop(); } });
+$('pairBtn').addEventListener('click', () => post('/api/pair_random', {}).then(r => { toast(r.ok ? '🎲 ✓' : (r.message || r.error || 'Xatolik'), !r.ok); loadPair(); }).catch(() => toast(t('netErr'), true)));
+$('chatSend').addEventListener('click', () => sendChat());
+$('chatInput').addEventListener('keydown', e => { if (e.key === 'Enter') sendChat(); });
+$('chatPhotoBtn').addEventListener('click', () => $('chatFile').click());
+$('chatFile').addEventListener('change', e => { pickPhoto(e.target.files && e.target.files[0]); e.target.value = ''; });
+$('addGroupBtn').addEventListener('click', () => openLink('https://t.me/' + BOT_USERNAME + '?startgroup=true'));
+$('openBotBtn').addEventListener('click', () => openLink(botLink('')));
+document.addEventListener('input', e => { const el = e.target; if (el && el.id === 'hcQty') hcPayRefresh(); if (el && el.id && el.id.startsWith('cu-')) { const k = el.dataset.kind, q = parseInt(el.value, 10) || 0, s = $('cs-' + k); if (s) s.textContent = '⭐ ' + (q ? customStars(k, q) : '—'); } });
+document.addEventListener('visibilitychange', () => { if (document.hidden) stopBg(); });
+
+// ============================================================ ISHGA TUSHIRISH
+applyTheme(THEME); applyI18n(); renderMenu(); renderSettings();
+go('home', false);
+window.__hm = { S, go, t, ACT, renderHome, renderRoles, renderShop, doTransfer, setLang, ENTER, showRole, trRefresh };
+})();
+</script>
+</body>
+</html>
